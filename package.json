@@ -1,0 +1,14 @@
+{
+  "name": "edu-javascript-escoba",
+  "version": "0.1.0",
+  "description": "Juego de la escoba en javascript",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cartas"
+  ],
+  "author": "",
+  "license": "GNUv3"
+}
