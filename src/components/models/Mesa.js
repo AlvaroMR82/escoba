@@ -9,6 +9,8 @@ class Mesa {
      */
     #mano = [];
 
+    #juego = null;
+
     // Getters y Setters
     get mano() { return this.#mano }
 
