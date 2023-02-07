@@ -1,0 +1,40 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Node Current file",
+            "program": "${file}",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node",
+            "runtimeArgs": [
+                "--experimental-vm-modules",
+                // "--trace-warnings",
+            ],
+        },
+        {
+            //https://mattmazzola.medium.com/how-to-debug-jest-tests-with-vscode-48f003c7cb41
+            "type": "node",
+            "runtimeArgs": [
+                "--experimental-vm-modules",
+                // "--trace-warnings",
+            ],
+            "request": "launch",
+            "name": "Jest Tests",
+            "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
+            "args": [
+                "--runInBand",
+            ],
+            "internalConsoleOptions": "openOnSessionStart",
+            "outFiles": [
+                "${workspaceRoot}/dist/**/*"
+            ],
+            //"envFile": "${workspaceRoot}/.env"
+        }
+    ]
+}

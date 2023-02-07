@@ -9,4 +9,4 @@ Puedes y debes alterar este fichero conforme vayas generando versiones:
 
 ## [Unreleased]
 
-## [`v0.1.0`] - 2022-01-
+## [`v0.1.0`] - 2023-02-07
