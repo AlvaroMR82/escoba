@@ -7,7 +7,7 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --noStackTrace",
     "test:debug": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose --watchAll --runInBand",
     "test:debug:silent": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose  --silent --watchAll --runInBand",
-    "test:update:model": "git fetch profesor; git checkout release/test/v1.0.0 -- src/test/model; git restore --staged src/test/model"
+    "test:update": "bin/update-test.sh v1.0.0"
   },
   "type": "module",
   "keywords": [
