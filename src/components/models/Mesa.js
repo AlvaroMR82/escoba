@@ -32,8 +32,7 @@ class Mesa {
      * @returns {Mesa} La instancia de esta mesa
      */
     recogerCartas = (...cartas) => {
-        this.#mano = this.#mano.concat(cartas);
-        return this;
+        //TODO: Implementa este método
     }
 
     /** Solicitud a la mesa para recoger una baza ganada. Para ello se debe de aportar una carta perteneciente a un jugador 
