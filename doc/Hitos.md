@@ -81,8 +81,29 @@ Recuerda hacer push de tu rama *release branch* (rb-usuario) y también de las t
 
 ## Hito 4: Modelado y diseño del juego de la escoba con orientación a objetos `release/nombreApellido/v0.4.0`
 
-1. El enfoque ha cambiado. Manejar la complejidad del juego con un paradigma estructurado resulta demasiado complicado. Por eso giraremos en este hito a un enfoque de paradigma. Concretamente Orientado a Objetos.
+1. El enfoque ha cambiado. Manejar la complejidad del juego con un paradigma estructurado resulta demasiado complicado. Por eso **giraremos en este hito a un enfoque de paradigma. Concretamente Orientado a Objetos**.
 
-1. Modelaremos las reglas del juego con objetos. Nos olvidaremos por el momento de la interfaz gráfica, centrándonos en las reglas del juego. Aplicaremos una estrategia DDD (Domain Driven Development).
+1. **Modelaremos las reglas del juego con objetos**. Nos olvidaremos por el momento de la interfaz gráfica, centrándonos en las reglas del juego. Aplicaremos una estrategia DDD (*Domain Driven Design*).
 
-1. Aplicaremos una técnica de TDD (Test Driven Development). Se te proporcionan unos test en la rama `test`. Debes orientar tu desarrollo para satisfacer estos test.
+1. Debes adaptarte al diseño proporcionado. Hay en el código comentarios con la palabra clave `TODO` para que realices los cambios oportunos.
+
+1. **Las especificaciones del hito están descritas en la documentación de los métodos**. Tienes más información sobre cómo documentar código javascript utilizando [JSDoc](https://jsdoc.app)
+
+1. Aplicaremos una técnica de TDD (Test Driven Development). Se te proporcionan unos test en la rama `test`. **Debes orientar tu desarrollo para satisfacer estos test**. No debes cambiar los tests, sino adaptar tu código para que funcione y satisfaga los tests. **Después de esta primera aproximación, haremos refactorizaciones**. En esta primera aproximación debes asegurarte que satisfaces todos los tests. Visita [Jest](https://jestjs.io/es-ES/) si quieres conocer más detalles sobre la herramienta empleada para el testing. Aquí tienes un pantallazo de los tests satisfechos:
+
+    ![Pantallazo todos los tests satisfechos](./img/04-tests-satisfechos.png)
+
+1. Ten muy en cuenta que **los tests irán evolucionando**. Hay **parte de la implementación que está deliberada y no deliberadamente SIN cobertura de pruebas** (no se prueba por el momento). Se te irán proporcionando más tests (en este mismo hito) y más especificaciones (en próximos hitos). Cuando haya una actualización en los tests verás que recibes una nueva tag de este tipo: `release/test/v1.x.x`.
+
+1. La forma de **lanzar los tests** es con este comando en la raiz de tu repo es (entre otras variantes):
+
+    ```bash
+    npm run test
+    ```
+
+1. Los nuevos test vendrán provocados por una actualización del repositorio del profesor. No debes preocuparte de qué versión de los test emplear, porque será especificada en el fichero `package.json` cuando estime el profesor. **La forma de obtenerse una nueva versión de los tests** es con este comando en la raiz de tu repo (esto lanza el script `bin/update-test.sh` que deberías poder comprender ya):
+
+    ```bash
+    # Cuidado ya que se sobreescibirá cualquier cambio sobre los ficheros *.test.js
+    npm run test:update
+    ```
