@@ -64,7 +64,12 @@ class Juego {
 
     // Métodos privados
 
-    /** Comienza la repartición de cartas entre los jugadores y la mesa
+    /** Comienza la repartición de cartas entre los jugadores y la mesa.
+     * La forma de repartir las cartas del mazo tendrá que ser rigurosamente la siguiente.
+     * Se reparten las cartas primero a los jugadores. Cada jugador recibirá las cartas de una en una.
+     * Es decir, cada jugador recibe una carta. Cuando los jugadores tengan todos una carta,
+     * se les repartirá la segunda y así sucesivamente. Por último, se repartirá a la mesa las cuatro
+     * cartas siguientes del mazo.
      * @returns {Juego}} La instancia de este juego
      */
     repartir = () => {
