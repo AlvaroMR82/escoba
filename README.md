@@ -83,7 +83,7 @@ git clone <url de tu fork>
 Crea tu propia rama de trabajo! Crea una nueva rama a partir de `main` que se llame como el nombre de tu usuario en el curso (este nombre de usuario se te facilitará en clase). Te recuerdo cómo:
 
 ```bash
-git checkout -b nombreApellido>/develop
+git checkout -b nombreApellido/develop
 ```
 
 **Esta será tu *release branch* a partir de ahora.**
