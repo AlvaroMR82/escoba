@@ -171,6 +171,42 @@ Tag | Descripción
 ### 10.2. Snapshot actual del enunciado
 
 ```Shell
+.
+├── CHANGELOG.md
+├── LICENSE
+├── README.md
+├── bin
+│   └── update-test.sh
+├── doc
+│   ├── Hitos.md
+│   ├── Notas.md
+│   ├── README.md
+│   ├── Work.md
+│   ├── img
+│   │   ├── 01-baraja-barajada.png
+│   │   ├── 01-baraja-desplegada.png
+│   │   ├── 02-juego-escoba-pantallazo-consola.png
+│   │   ├── 02-juego-escoba-repartido.png
+│   │   ├── 03-mano-escoba-demo-h3-1.gif
+│   │   ├── 03-mano-escoba-demo-h3-2.gif
+│   │   └── 04-demo-running-tests.png
+│   └── res
+│       └── des-sprites.py
+├── package-lock.json
+├── package.json
+└── src
+    ├── components
+    │   ├── controllers
+    │   ├── models
+    │   │   ├── BarajaEspagnola.js
+    │   │   ├── Carta.js
+    │   │   ├── Juego.js
+    │   │   ├── Jugador.js
+    │   │   └── Mesa.js
+    │   └── views
+    └── test
+
+10 directories, 23 files
 
 ```
 

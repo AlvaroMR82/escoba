@@ -91,7 +91,7 @@ Recuerda hacer push de tu rama *release branch* (rb-usuario) y también de las t
 
 1. Aplicaremos una técnica de TDD (Test Driven Development). Se te proporcionan unos test en la rama `test`. **Debes orientar tu desarrollo para satisfacer estos test**. No debes cambiar los tests, sino adaptar tu código para que funcione y satisfaga los tests. **Después de esta primera aproximación, haremos refactorizaciones**. En esta primera aproximación debes asegurarte que satisfaces todos los tests. Visita [Jest](https://jestjs.io/es-ES/) si quieres conocer más detalles sobre la herramienta empleada para el testing. Aquí tienes un pantallazo de los tests satisfechos:
 
-    ![Pantallazo todos los tests satisfechos](./img/04-tests-satisfechos.png)
+    ![Pantallazo todos los tests satisfechos](./img/04-demo-running-tests.png)
 
 1. Ten muy en cuenta que **los tests irán evolucionando**. Hay **parte de la implementación que está deliberada y no deliberadamente SIN cobertura de pruebas** (no se prueba por el momento). Se te irán proporcionando más tests (en este mismo hito) y más especificaciones (en próximos hitos). Cuando haya una actualización en los tests verás que recibes una nueva tag de este tipo: `release/test/v1.x.x`.
 
