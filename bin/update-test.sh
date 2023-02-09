@@ -6,5 +6,5 @@ then
 fi
 
 git fetch profesor
-git checkout profesor/release/test/$1 -- src/test
+git checkout release/test/$1 -- src/test
 git restore --staged src/test
