@@ -33,6 +33,8 @@ class Mesa {
      */
     recogerCartas = (...cartas) => {
         //TODO: Implementa este método
+        this.#mano.push(cartas);
+        return this;
     }
 
     /** Solicitud a la mesa para recoger una baza ganada. Para ello se debe de aportar una carta perteneciente a un jugador 
@@ -44,6 +46,7 @@ class Mesa {
      */
     recogeBazaGanada = (carta, cartasElegidas) => {
         //TODO: Implementa este método
+        
     }
 
 }

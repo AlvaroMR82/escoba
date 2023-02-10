@@ -1,5 +1,6 @@
 // import { Carta } from "./Carta.js"; // Nota por qué no es necesario este import
 import { Juego } from "./Juego.js"
+import { Mesa } from "./Mesa.js";
 
 class Jugador {
 
@@ -77,7 +78,9 @@ class Jugador {
         }else{
             throw new Error(`No has sumado 15: ${(valorMano+cartaMano.valor)}`)
         }
-       
+       if(Mesa.valor=0){
+        escoba=true;
+       }
        
     }
 
@@ -88,6 +91,11 @@ class Jugador {
      */
     arroja(cartaMano) {
         // TODO: Implementa este método
+        this.recogerCartas(cartaMano);
+
+        return instanceof(Jugador);
+
+        
     }
 
     // privados
