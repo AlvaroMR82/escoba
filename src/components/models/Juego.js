@@ -1,6 +1,6 @@
 import { Jugador } from './Jugador.js';
-import { Mesa } from './Mesa.js'
-import { BarajaEspagnola } from './BarajaEspagnola.js'
+import { Mesa } from './Mesa.js';
+import { BarajaEspagnola } from './BarajaEspagnola.js';
 
 class Juego {
 
@@ -58,7 +58,17 @@ class Juego {
      * @returns {boolean} Verdadero si comenzó Falso en caso contrario
      */
     isPartidaIniciada() {
-        // TODO: Implementa este método
+             // TODO: Implementa este método
+        let boolean , partidaIniciada=false; ;
+   
+        if (this.#mazo && this.#jugadores && this.#mesa != null) {
+            partidaIniciada = true;
+        } else {
+            partidaIniciada = false;
+        }
+
+
+        return isPartidaIniciada;
     }
 
 

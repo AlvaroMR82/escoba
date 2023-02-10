@@ -43,6 +43,11 @@ class Jugador {
      */
     recogerCartas = (...cartas) => {
         // TODO: Implementa este método
+        for(let i=0;i<cartas.length;i++){
+            this.#mano[i]=cartas[i];
+        }
+        
+        
     }
 
     /**
@@ -58,6 +63,22 @@ class Jugador {
      */
     juega(cartaMano, ...cartasMesa) {
        // TODO: Implementa este método
+       let valorMano=0;
+       let baza=[];
+       for(let i=0;i<cartasMesa.length;i++){
+        valorMano=+cartasMesa[i];
+    }
+        if((valorMano+cartaMano.valor)==15){
+            for(let i=0;i<cartasMesa.length;i++){
+                baza[i]=cartaMesa[i];
+            }
+            baza.push(cartaMano);
+            return baza;
+        }else{
+            throw new Error(`No has sumado 15: ${(valorMano+cartaMano.valor)}`)
+        }
+       
+       
     }
 
     /** El jugador opta por tirar una carta de su mano sin la posibilidad de llevarse ninguna baza. La carta arrojada pasará a formar parte de la mesa
