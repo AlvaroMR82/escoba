@@ -40,21 +40,27 @@ class Juego {
      */
     init() {
         // Construir baraja y asignarla al mazo
-        // TODO: inicializa this.#mazo con una nueva baraja de cartas
-        let baraja = new BarajaEspagnola;
+     
+        let baraja= new BarajaEspagnola(7);
         this.#mazo = baraja;
         // Estableciendo el valor que se pretende de cada carta
         this.estableceValorCartas();
 
         // inicializar jugadores
-        // TODO: Crea 2 jugadores para el juego
-        let jugador1 = new Jugador;
-        let jugador2 = new Jugador;
+        
+        let jugador1 = new Jugador(this);
+        let jugador2 = new Jugador(this);
+        this.#jugadores[0]=jugador1;
+        this.#jugadores[1]=jugador2;
         // inicializo la mesa
-        // TODO: Crea una nueva mesa para el juego
-        let mesa = new Mesa(this);
+        this.#mesa = new Mesa(this);
+      
+       
+        
         return this;
-
+        this.isPartidaIniciada();
+        this.repartir();
+     
     }
 
     /** Indica si una partida ha comenzado
@@ -82,13 +88,18 @@ class Juego {
      * @returns {Juego}} La instancia de este juego
      */
     repartir = () => {
+        this.#jugadores[0].recogeCartas(cartas);
          //TODO: Implementa este método
-         for(let i=0; i=2;i++){
-            jugador1.mano[i]=this.#mazo.shift();
-            jugador2.mano[i]=this.#mazo.shift(); 
+         let mazo1=this.#mazo.cartas;
+         for(let i=0; i==2;i++){
+           this.#jugadores[0].mano[i]=mazo1[0];
+           mazo1.shift();
+           this.#jugadores[1].mano[i]=mazo1[0];
+           mazo1.shift();
          }
          for(let i=0; i=3;i++){
-             mesa.mano[i] =this.#mazo.shift();
+             this.#mesa.mano[i] =mazo1[0];
+             mazo1.shift();
           }
  
          return this;
@@ -100,26 +111,27 @@ class Juego {
      */
     estableceValorCartas = () => {
        // TODO: Implementa este método.
-       this.baraja.forEach(carta => {
+       let mazo1=this.#mazo.cartas;
+        for(let i=0;i<mazo1.length;i++)  {  
             
+        if(mazo1[i].numero>=10){
+            if(mazo1[i].numero==10){
+                mazo1[i].valor(8);
+            }
+            if(mazo1[i].numero==11){
+                mazo1[i].valor(9);
+            }
+            if(mazo1[i].numero==12){
+                mazo1[i].valor(10);
+            }
             
-        if(isFigura(carta)){
-            if(carta.numero==10){
-                carta.valor(8);
-            }
-            if(carta.numero==11){
-                carta.valor(9);
-            }
-            if(carta.numero==12){
-                carta.valor(10);
-            }
-            
-        }else{
-
-            carta.valor(carta.numero);
         }
-
-    });
+        if(mazo1[i]<10){
+            mazo1[i].valor(mazo1[i].numero.value);
+        }
+        }
+        this.#mazo=mazo1;
+  
     return this;
 
     }

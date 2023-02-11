@@ -47,7 +47,7 @@ class Jugador {
         for(let i=0;i<cartas.length;i++){
             this.#mano[i]=cartas[i];
         }
-        
+        return this;
         
     }
 
@@ -93,7 +93,7 @@ class Jugador {
         // TODO: Implementa este método
         this.recogerCartas(cartaMano);
 
-        return this.Jugador;
+        return this;
 
         
     }
