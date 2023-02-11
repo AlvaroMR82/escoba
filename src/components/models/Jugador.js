@@ -93,7 +93,7 @@ class Jugador {
         // TODO: Implementa este método
         this.recogerCartas(cartaMano);
 
-        return instanceof(Jugador);
+        return this.Jugador;
 
         
     }

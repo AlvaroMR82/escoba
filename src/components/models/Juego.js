@@ -41,17 +41,20 @@ class Juego {
     init() {
         // Construir baraja y asignarla al mazo
         // TODO: inicializa this.#mazo con una nueva baraja de cartas
-
+        let baraja = new BarajaEspagnola;
+        this.#mazo = baraja;
         // Estableciendo el valor que se pretende de cada carta
         this.estableceValorCartas();
 
         // inicializar jugadores
         // TODO: Crea 2 jugadores para el juego
-
+        let jugador1 = new Jugador;
+        let jugador2 = new Jugador;
         // inicializo la mesa
         // TODO: Crea una nueva mesa para el juego
-
+        let mesa = new Mesa(this);
         return this;
+
     }
 
     /** Indica si una partida ha comenzado
@@ -59,16 +62,12 @@ class Juego {
      */
     isPartidaIniciada() {
              // TODO: Implementa este método
-        let boolean , partidaIniciada=false; ;
-   
-        if (this.#mazo && this.#jugadores && this.#mesa != null) {
-            partidaIniciada = true;
-        } else {
-            partidaIniciada = false;
-        }
-
-
-        return isPartidaIniciada;
+             if (this.init()){
+                return true;
+            }else{
+                return false;
+            }
+    
     }
 
 
@@ -83,16 +82,46 @@ class Juego {
      * @returns {Juego}} La instancia de este juego
      */
     repartir = () => {
-        //TODO: Implementa este método
-        return this;
+         //TODO: Implementa este método
+         for(let i=0; i=2;i++){
+            jugador1.mano[i]=this.#mazo.shift();
+            jugador2.mano[i]=this.#mazo.shift(); 
+         }
+         for(let i=0; i=3;i++){
+             mesa.mano[i] =this.#mazo.shift();
+          }
+ 
+         return this;
+ 
     }
 
     /** Establece el valor de cada carta según las reglas del juego de la escoba
     * @returns {Juego}} La instancia de este juego
      */
     estableceValorCartas = () => {
-        // TODO: Implementa este método
-        return this;
+       // TODO: Implementa este método.
+       this.baraja.forEach(carta => {
+            
+            
+        if(isFigura(carta)){
+            if(carta.numero==10){
+                carta.valor(8);
+            }
+            if(carta.numero==11){
+                carta.valor(9);
+            }
+            if(carta.numero==12){
+                carta.valor(10);
+            }
+            
+        }else{
+
+            carta.valor(carta.numero);
+        }
+
+    });
+    return this;
+
     }
 }
 
