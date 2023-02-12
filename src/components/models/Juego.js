@@ -60,7 +60,7 @@ class Juego {
         return this;
         this.isPartidaIniciada();
         this.repartir();
-     
+        this.estableceValorCartas();
     }
 
     /** Indica si una partida ha comenzado
