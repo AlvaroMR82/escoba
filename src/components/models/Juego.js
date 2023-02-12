@@ -42,9 +42,9 @@ class Juego {
         // Construir baraja y asignarla al mazo
      
         let baraja= new BarajaEspagnola(7);
-        this.#mazo = baraja;
+        this.#mazo = baraja.cartas;
         // Estableciendo el valor que se pretende de cada carta
-        this.estableceValorCartas();
+     this.estableceValorCartas();
 
         // inicializar jugadores
         
@@ -60,7 +60,7 @@ class Juego {
         return this;
         this.isPartidaIniciada();
         this.repartir();
-        this.estableceValorCartas();
+        
     }
 
     /** Indica si una partida ha comenzado
@@ -111,23 +111,17 @@ class Juego {
      */
     estableceValorCartas = () => {
        // TODO: Implementa este método.
-       let mazo1=this.#mazo.cartas;
+
+       let mazo1=this.#mazo;
+        
+     
         for(let i=0;i<mazo1.length;i++)  {  
             
-        if(mazo1[i].numero>=10){
-            if(mazo1[i].numero==10){
-                mazo1[i].valor(8);
-            }
-            if(mazo1[i].numero==11){
-                mazo1[i].valor(9);
-            }
-            if(mazo1[i].numero==12){
-                mazo1[i].valor(10);
-            }
-            
-        }
-        if(mazo1[i]<10){
-            mazo1[i].valor(mazo1[i].numero.value);
+  
+        if(mazo1[i].numero < 10){
+            mazo1[i].valor=mazo1[i].numero;
+        }else{
+            mazo1[i].valor=10;
         }
         }
         this.#mazo=mazo1;
