@@ -40,26 +40,26 @@ class Juego {
      */
     init() {
         // Construir baraja y asignarla al mazo
-     
-        let baraja= new BarajaEspagnola(7);
+
+        let baraja = new BarajaEspagnola(7);
         this.#mazo = baraja.cartas;
         // Estableciendo el valor que se pretende de cada carta
-     this.estableceValorCartas();
+        this.estableceValorCartas();
 
         // inicializar jugadores
-        
+
         let jugador1 = new Jugador(this);
         let jugador2 = new Jugador(this);
-        this.#jugadores[0]=jugador1;
-        this.#jugadores[1]=jugador2;
+        this.#jugadores[0] = jugador1;
+        this.#jugadores[1] = jugador2;
         // inicializo la mesa
         this.#mesa = new Mesa(this);
-      
-       
-        
-        return this;
+
         this.isPartidaIniciada();
         this.repartir();
+
+        return this;
+       
         
     }
 
@@ -67,13 +67,15 @@ class Juego {
      * @returns {boolean} Verdadero si comenzó Falso en caso contrario
      */
     isPartidaIniciada() {
-             // TODO: Implementa este método
-             if (this.init()){
-                return true;
-            }else{
-                return false;
-            }
-    
+        // TODO: Implementa este método
+        /*
+        if (this.init()) {
+            return true;
+        } else {
+            return false;
+        }
+*/
+return false;
     }
 
 
@@ -88,55 +90,58 @@ class Juego {
      * @returns {Juego}} La instancia de este juego
      */
     repartir = () => {
-        this.#jugadores[0].recogeCartas(cartas);
-         //TODO: Implementa este método
-         let mazo1=this.#mazo.cartas;
-         for(let i=0; i==2;i++){
-           this.#jugadores[0].mano[i]=mazo1[0];
-           mazo1.shift();
-           this.#jugadores[1].mano[i]=mazo1[0];
-           mazo1.shift();
-         }
-         for(let i=0; i=3;i++){
-             this.#mesa.mano[i] =mazo1[0];
-             mazo1.shift();
-          }
- 
-         return this;
- 
+      
+        
+        //TODO: Implementa este método
+        let mazo1=this.#mazo;
+        let jugador1= this.#jugadores[0];
+        let jugador2= this.#jugadores[1];
+        let mesa1=this.#mesa;
+        let mj1=[];
+       
+        for (let i = 0; i < 10; i++) {
+            mj1.push(mazo1[i]);
+           // mazo1.shift();
+        }
+        
+        
+        jugador1.recogerCartas(mj1[0],mj1[2],mj1[4]);
+        jugador2.recogerCartas(mj1[1],mj1[3],mj1[5]);
+        mesa1.recogerCartas(mj1[6],mj1[7],mj1[8],mj1[9]);
+
     }
 
     /** Establece el valor de cada carta según las reglas del juego de la escoba
     * @returns {Juego}} La instancia de este juego
      */
     estableceValorCartas = () => {
-       // TODO: Implementa este método.
+        // TODO: Implementa este método.
 
-       let mazo1=this.#mazo;
-        
-       
-       mazo1.forEach(carta => {
-        console.log(carta.toString());
-       
-      let valor=carta.toString();
-      let vF = valor[1];
-      if (vF == 'C' | vF == 'R' | vF == 'S'){
-      if (vF == "S") {
-          carta.valor = 10;
-      } else if (vF == "C") {
-        carta.valor = 10;
-      } else if (vF == "R") {
-        carta.valor= 10;
-      }
-    }else{
-      carta.valor=parseInt(vF);
-        
-    }
-   
-        
-     });
-  
-    return this;
+        let mazo1 = this.#mazo;
+
+
+        mazo1.forEach(carta => {
+            console.log(carta.toString());
+
+            let valor = carta.toString();
+            let vF = valor[1];
+            if (vF == 'C' | vF == 'R' | vF == 'S') {
+                if (vF == "S") {
+                    carta.valor = 10;
+                } else if (vF == "C") {
+                    carta.valor = 10;
+                } else if (vF == "R") {
+                    carta.valor = 10;
+                }
+            } else {
+                carta.valor = parseInt(vF);
+
+            }
+
+
+        });
+
+        return this;
 
     }
 }

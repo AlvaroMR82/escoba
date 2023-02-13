@@ -33,7 +33,7 @@ class Mesa {
      */
     recogerCartas = (...cartas) => {
         //TODO: Implementa este método
-        this.#mano.push(cartas);
+        this.#mano=cartas;
         return this;
     }
 

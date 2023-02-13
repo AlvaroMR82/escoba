@@ -44,9 +44,7 @@ class Jugador {
      */
     recogerCartas = (...cartas) => {
         // TODO: Implementa este método
-        for(let i=0;i<cartas.length;i++){
-            this.#mano[i]=cartas[i];
-        }
+        this.#mano=cartas;
         return this;
         
     }
