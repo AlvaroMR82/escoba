@@ -46,6 +46,8 @@ class Mesa {
      */
     recogeBazaGanada = (carta, cartasElegidas) => {
         //TODO: Implementa este método
+
+        
         
     }
 

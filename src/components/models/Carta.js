@@ -57,7 +57,7 @@ class Carta {
 
     getCartaByClave = (clave) => this.#baraja.getCartaByClave(clave);
     isFigura = () => this.#figura != null;
-    isAs = () => this.#num === 1
+    isAs = () => this.#num === 1;
     isEspadas = () => this.#palo === BarajaEspagnola.Palos.Espadas;
     isOros = () => this.#palo === BarajaEspagnola.Palos.Oros;
     isBastos = () => this.#palo === BarajaEspagnola.Palos.Bastos;

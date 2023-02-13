@@ -7,12 +7,32 @@ import { Juego } from './Juego.js';
   
 function valorCarta() {
     let mibaraja=baraja.cartas;
-    let carta=mibaraja[1];
-    carta.valor=5;
-    console.log(carta.numero);
-
-   
-    
+     
+          
+         mibaraja.forEach(carta => {
+            console.log(carta.toString());
+           
+          let valor=carta.toString();
+          let vF = valor[1];
+          if (vF == 'C' | vF == 'R' | vF == 'S'){
+          if (vF == "S") {
+              carta.valor = 8;
+          } else if (vF == "C") {
+            carta.valor = 9;
+          } else if (vF == "R") {
+            carta.valor= 10;
+          }
+        }else{
+          carta.valor=parseInt(vF);
+            
+        }
+        console.log(carta.valor);
+            
+         });
+      
+     return this;
+ 
+     
     
 
 }

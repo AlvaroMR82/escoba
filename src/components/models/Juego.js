@@ -114,17 +114,27 @@ class Juego {
 
        let mazo1=this.#mazo;
         
-     
-        for(let i=0;i<mazo1.length;i++)  {  
-            
-  
-        if(mazo1[i].numero < 10){
-            mazo1[i].valor=mazo1[i].numero;
-        }else{
-            mazo1[i].valor=10;
-        }
-        }
-        this.#mazo=mazo1;
+       
+       mazo1.forEach(carta => {
+        console.log(carta.toString());
+       
+      let valor=carta.toString();
+      let vF = valor[1];
+      if (vF == 'C' | vF == 'R' | vF == 'S'){
+      if (vF == "S") {
+          carta.valor = 10;
+      } else if (vF == "C") {
+        carta.valor = 10;
+      } else if (vF == "R") {
+        carta.valor= 10;
+      }
+    }else{
+      carta.valor=parseInt(vF);
+        
+    }
+   
+        
+     });
   
     return this;
 
