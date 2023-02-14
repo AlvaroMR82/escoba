@@ -5,6 +5,6 @@ then
     git remote add profesor ssh://git@gitlab.iessanclemente.net:60600/dwcc-dist-2223/edu-javascript-escoba.git
 fi
 
-git fetch profesor
+git fetch --tags profesor
 git checkout release/test/$1 -- src/test
 git restore --staged src/test
