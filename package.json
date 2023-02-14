@@ -7,7 +7,10 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --noStackTrace --passWithNoTests",
     "test:debug": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose --watchAll --runInBand",
     "test:debug:silent": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose  --silent --watchAll --runInBand",
-    "test:update": "bin/update-test.sh v1.1.0"
+    "test:update": "bin/update-test.sh"
+  },
+  "config": {
+    "test_version": "v1.1.0"
   },
   "type": "module",
   "keywords": [

@@ -6,5 +6,7 @@ then
 fi
 
 git fetch --tags profesor
-git checkout release/test/$1 -- src/test
+
+echo "Obteniendo $npm_package_config_test_version versión de los test..."
+git checkout release/test/$npm_package_config_test_version -- src/test
 git restore --staged src/test
