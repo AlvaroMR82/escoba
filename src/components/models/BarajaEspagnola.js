@@ -45,7 +45,7 @@ class BarajaEspagnola {
                 newBaraja.push( new Carta(this, unPalo, i) );
             }
             // Añado las figuras (sota, caballo, rey)
-            Object.values(BarajaEspagnola.Figuras).forEach( (unaFigura, idx) => newBaraja.push( new Carta(this, unPalo, idx, unaFigura) ));
+            Object.values(BarajaEspagnola.Figuras).forEach( (unaFigura, idx) => newBaraja.push( new Carta(this, unPalo, idx+10, unaFigura) ));
         }
         this.#cartas = newBaraja;
     }
