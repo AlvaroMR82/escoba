@@ -32,7 +32,8 @@ class BarajaEspagnola {
         return this.#cartas;
     }
 
-    /** Construye la baraja española
+    /**
+     * Construye la baraja española: https://commons.wikimedia.org/wiki/File:Baraja_española_completa.png
      * @param {number} valorMax - Indica cual es el número de carta más alto (excluyendo las figuras)
      */
     constructor(valorMax=7) {
