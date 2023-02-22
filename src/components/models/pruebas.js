@@ -36,3 +36,5 @@ function valorCarta() {
     valorCarta();
   
 }
+
+

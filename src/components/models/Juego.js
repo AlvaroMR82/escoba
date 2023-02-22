@@ -41,7 +41,7 @@ class Juego {
     init() {
         // Construir baraja y asignarla al mazo
 
-        let baraja = new BarajaEspagnola(7);
+        let baraja = new BarajaEspagnola();
         this.#mazo = baraja.cartas;
         // Estableciendo el valor que se pretende de cada carta
         this.estableceValorCartas();
@@ -68,14 +68,14 @@ class Juego {
      */
     isPartidaIniciada() {
         // TODO: Implementa este método
-        if (this.#mazo !=null | this.#jugadores.lenght != 0 | this.#mesa!=null){    
+        if (this.#mazo !=null | this.#jugadores.lenght != 0 | this.#mesa!=null | this.#jugadores[0].miMano.lenght < 3){    
             return false;
 
         }else{
             return true;
         }
 
-return false;
+        return false;
     }
 
 
@@ -92,7 +92,7 @@ return false;
     repartir = () => {
       
         
-        //TODO: Implementa este método
+        
         let mazo1=this.#mazo;
         let jugador1= this.#jugadores[0];
         let jugador2= this.#jugadores[1];
@@ -115,14 +115,11 @@ return false;
     * @returns {Juego}} La instancia de este juego
      */
     estableceValorCartas = () => {
-        // TODO: Implementa este método.
-
+       
         let mazo1 = this.#mazo;
 
 
         mazo1.forEach(carta => {
-            console.log(carta.toString());
-
             let valor = carta.toString();
             let vF = valor[1];
             if (vF == 'C' | vF == 'R' | vF == 'S') {

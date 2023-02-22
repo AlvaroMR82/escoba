@@ -20,7 +20,7 @@ class Mesa {
      * @param {Juego} juego - instancia del juego al que pertenece esta mesa
      */
     constructor(juego) {
-        if(juego && juego instanceof Juego){
+        if (juego && juego instanceof Juego) {
             this.#juego = juego;
         } else throw new Error('No es posible construir la sin relación a un juego');
     }
@@ -32,8 +32,13 @@ class Mesa {
      * @returns {Mesa} La instancia de esta mesa
      */
     recogerCartas = (...cartas) => {
-        //TODO: Implementa este método
-        this.#mano=cartas;
+      
+        
+        let añadirCartas=[];
+        añadirCartas=cartas;
+        añadirCartas.concat(this.mano);
+        this.#mano=añadirCartas;
+       
         return this;
     }
 
@@ -45,10 +50,25 @@ class Mesa {
      * @throws {Error} Lanza un error si no es posible recoger una baza como ganada si se incumplen las normas del juego
      */
     recogeBazaGanada = (carta, cartasElegidas) => {
-        //TODO: Implementa este método
+        //cogemos el valor de todas las cartas y lo sumamos. Si es diferente de 15 error.
+        //Si las cartaselegidas de la mesa sumam 15 y son las mismas que hay en la mesa es una escoba.
 
-        
-        
+        let suma = carta.valor;
+        cartasElegidas.forEach(carta => {
+            suma = suma + carta.valor;
+        });
+
+        if (suma != 15) {
+            throw new Error('la baza no ha sumado 15, vuelve a intentarlo');
+        }
+
+        if (cartasElegidas == this.#mano && suma == 15) {
+            return true;
+        } else {
+            return false;
+        }
+
+
     }
 
 }

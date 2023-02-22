@@ -43,8 +43,11 @@ class Jugador {
      * @returns {Jugador} - la instancia del jugador
      */
     recogerCartas = (...cartas) => {
-        // TODO: Implementa este método
-        this.#mano=cartas;
+        
+        let añadirCartas=[];
+        añadirCartas=cartas;
+        añadirCartas.concat(this.mano);
+        this.#mano=añadirCartas;
         return this;
         
     }
