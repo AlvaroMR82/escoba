@@ -64,26 +64,27 @@ class Jugador {
      * @throws {Error} Lanzará un error si el jugador no puede ganar la baza
      */
     juega(cartaMano, ...cartasMesa) {
+
        // TODO: Implementa este método
+       
        let valorMano=0;
        let baza=[];
        for(let i=0;i<cartasMesa.length;i++){
-        valorMano=+cartasMesa[i];
+        valorMano=valorMano + cartasMesa[i];
     }
         if((valorMano+cartaMano.valor)==15){
-            for(let i=0;i<cartasMesa.length;i++){
-                baza[i]=cartaMesa[i];
-            }
+            baza = cartasMesa;
             baza.push(cartaMano);
             return baza;
         }else{
             throw new Error(`No has sumado 15: ${(valorMano+cartaMano.valor)}`)
         }
-       if(Mesa.valor=0){
-        escoba=true;
-       }
-       
-    }
+      
+    
+    }      
+          
+        
+    
 
     /** El jugador opta por tirar una carta de su mano sin la posibilidad de llevarse ninguna baza. La carta arrojada pasará a formar parte de la mesa
      * @param {Carta} cartaMano - Carta arrojada de la mano del jugador

@@ -53,10 +53,7 @@ class Juego {
         this.#jugadores[0] = jugador1;
         this.#jugadores[1] = jugador2;
         // inicializo la mesa
-        this.#mesa = new Mesa(this);
-
-      
-        this.repartir();
+        this.#mesa = new Mesa(this);      
         this.isPartidaIniciada();
         return this;
        
@@ -99,16 +96,16 @@ class Juego {
         let mesa1=this.#mesa;
         let mj1=[];
        
-        for (let i = 30; i < 40; i++) {
-            mj1.push(mazo1[i]);
-           // mazo1.shift();
+        for (let i = 0; i < 10; i++) {
+            mj1.push(mazo1.pop());
+            
         }
         
         
-        jugador1.recogerCartas(mj1[9],mj1[7],mj1[5]);
-        jugador2.recogerCartas(mj1[8],mj1[6],mj1[4]);
-        mesa1.recogerCartas(mj1[3],mj1[2],mj1[1],mj1[0]);
-
+        jugador1.recogerCartas(mj1[0],mj1[2],mj1[4]);
+        jugador2.recogerCartas(mj1[1],mj1[3],mj1[5]);
+        mesa1.recogerCartas(mj1[6],mj1[7],mj1[8],mj1[9]);
+       
     }
 
     /** Establece el valor de cada carta según las reglas del juego de la escoba
