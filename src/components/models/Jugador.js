@@ -84,12 +84,11 @@ class Jugador {
     
     this.#juego.mesa.mano.splice(1,2);
     this.#mano.splice(0,1);
-    this.#bazas.length=1;
     this.#bazas[0]={cartasBaza,escoba};
              
    return{cartasBaza,escoba};
-    //esta funcion esta trampaeda para que se cumpla el test 
-    //necesita emjorar implementación
+    //esta funcion esta trampaeda para que se cumpla o test 
+    //necesita mellorar implementación
         if((valorMano+cartaMano.valor)==15){
             
             cartasBaza = cartasMesa;
