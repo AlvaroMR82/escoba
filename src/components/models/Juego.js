@@ -64,15 +64,18 @@ class Juego {
      * @returns {boolean} Verdadero si comenzó Falso en caso contrario
      */
     isPartidaIniciada() {
-        // TODO: Implementa este método
-        if (this.#mazo !=null | this.#jugadores.lenght != 0 | this.#mesa!=null | this.#jugadores[0].miMano.lenght < 3){    
-            return false;
-
-        }else{
+        let jugador=this.#jugadores[0];
+        let mano=[];
+        mano = jugador.miMano;
+       
+        if ( mano.length == 2){    
             return true;
-        }
 
+        }
+          
         return false;
+
+        
     }
 
 

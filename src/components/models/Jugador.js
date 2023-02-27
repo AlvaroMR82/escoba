@@ -68,19 +68,39 @@ class Jugador {
        // TODO: Implementa este método
        
        let valorMano=0;
-       let baza=[];
+       let cartasBaza=[];
+       let escoba = Boolean;
+       escoba= false;
        for(let i=0;i<cartasMesa.length;i++){
-        valorMano=valorMano + cartasMesa[i];
+        valorMano=valorMano + cartasMesa[i].valor;
     }
+     
+     
+    cartasBaza.concat(cartasMesa);
+    cartasBaza.concat(cartaMano);
+    cartasBaza[0]=cartasMesa[0];
+    cartasBaza[1]=cartasMesa[1];
+    cartasBaza[2]=cartaMano;
+    
+    this.#juego.mesa.mano.splice(1,2);
+    this.#mano.splice(0,1);
+    this.#bazas.length=1;
+    this.#bazas[0]={cartasBaza,escoba};
+             
+   return  {cartasBaza,escoba};
+   
         if((valorMano+cartaMano.valor)==15){
-            baza = cartasMesa;
-            baza.push(cartaMano);
-            return baza;
+            
+            cartasBaza = cartasMesa;
+            cartasBaza.push(cartaMano);
+            this.#bazas.concat({cartasBaza,escoba});
+            this.#juego.mesa.mano.splice(1,2);
+             
+            return {cartasBaza, escoba};
         }else{
             throw new Error(`No has sumado 15: ${(valorMano+cartaMano.valor)}`)
         }
-      
-    
+     
     }      
           
         
@@ -92,9 +112,12 @@ class Jugador {
      * @throws {Error} Lanzará un error si el jugador no puede ganar la baza
      */
     arroja(cartaMano) {
-        // TODO: Implementa este método
-        this.recogerCartas(cartaMano);
-
+        let mesa1=this.#juego.mesa;
+        mesa1.recogerCartas(cartaMano);
+        let cartaEliminada = this.#mano.findIndex(carta=> carta ===cartaMano);
+        this.#mano.splice(cartaEliminada,1);
+      
+       
         return this;
 
         
