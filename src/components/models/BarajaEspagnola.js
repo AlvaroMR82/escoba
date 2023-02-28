@@ -32,7 +32,8 @@ class BarajaEspagnola {
         return this.#cartas;
     }
 
-    /** Construye la baraja española
+    /**
+     * Construye la baraja española: https://commons.wikimedia.org/wiki/File:Baraja_española_completa.png
      * @param {number} valorMax - Indica cual es el número de carta más alto (excluyendo las figuras)
      */
     constructor(valorMax=7) {
@@ -45,7 +46,7 @@ class BarajaEspagnola {
                 newBaraja.push( new Carta(this, unPalo, i) );
             }
             // Añado las figuras (sota, caballo, rey)
-            Object.values(BarajaEspagnola.Figuras).forEach( (unaFigura, idx) => newBaraja.push( new Carta(this, unPalo, idx, unaFigura) ));
+            Object.values(BarajaEspagnola.Figuras).forEach( (unaFigura, idx) => newBaraja.push( new Carta(this, unPalo, idx+10, unaFigura) ));
         }
         this.#cartas = newBaraja;
     }
