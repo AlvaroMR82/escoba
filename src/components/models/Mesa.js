@@ -32,8 +32,7 @@ class Mesa {
      * @returns {Mesa} La instancia de esta mesa
      */
     recogerCartas = (...cartas) => {
-      
-        
+              
         let añadirCartas=[];
         añadirCartas=cartas;
         añadirCartas.concat(this.mano);
@@ -53,7 +52,8 @@ class Mesa {
         //cogemos el valor de todas las cartas y lo sumamos. Si es diferente de 15 error.
         //Si las cartaselegidas de la mesa sumam 15 y son las mismas que hay en la mesa es una escoba.
 
-        let suma = carta.valor;
+        let suma=0;
+        suma = suma + carta.valor;
         cartasElegidas.forEach(carta => {
             suma = suma + carta.valor;
         });
@@ -62,7 +62,7 @@ class Mesa {
             throw new Error('la baza no ha sumado 15, vuelve a intentarlo');
         }
 
-        if (cartasElegidas == this.#mano && suma == 15) {
+        if (cartasElegidas === this.#mano && suma == 15) {
             return true;
         } else {
             return false;

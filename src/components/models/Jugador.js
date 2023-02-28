@@ -43,13 +43,13 @@ class Jugador {
      * @returns {Jugador} - la instancia del jugador
      */
     recogerCartas = (...cartas) => {
-        
-        let añadirCartas=[];
-        añadirCartas=cartas;
+
+        let añadirCartas = [];
+        añadirCartas = cartas;
         añadirCartas.concat(this.mano);
-        this.#mano=añadirCartas;
+        this.#mano = añadirCartas;
         return this;
-        
+
     }
 
     /**
@@ -65,46 +65,47 @@ class Jugador {
      */
     juega(cartaMano, ...cartasMesa) {
 
-       // TODO: Implementa este método
-       
-       let valorMano=0;
-       let cartasBaza=[];
-       let escoba = Boolean;
-       escoba= false;
-       for(let i=0;i<cartasMesa.length;i++){
-        valorMano=valorMano + cartasMesa[i].valor;
-    }
-     
-     
-    cartasBaza.concat(cartasMesa);
-    cartasBaza.concat(cartaMano);
-    cartasBaza[0]=cartasMesa[0];
-    cartasBaza[1]=cartasMesa[1];
-    cartasBaza[2]=cartaMano;
-    
-    this.#juego.mesa.mano.splice(1,2);
-    this.#mano.splice(0,1);
-    this.#bazas[0]={cartasBaza,escoba};
-             
-   return{cartasBaza,escoba};
-    //esta funcion esta trampaeda para que se cumpla o test 
-    //necesita mellorar implementación
-        if((valorMano+cartaMano.valor)==15){
-            
-            cartasBaza = cartasMesa;
-            cartasBaza.push(cartaMano);
-            this.#bazas.concat({cartasBaza,escoba});
-            this.#juego.mesa.mano.splice(1,2);
-             
-            return {cartasBaza, escoba};
-        }else{
-            throw new Error(`No has sumado 15: ${(valorMano+cartaMano.valor)}`)
-        }
-     
-    }      
-          
         
-    
+        let cartasBaza = [];
+        let escoba = Boolean;
+        //Comporbamos si la jugada es una escoba y si las cartas suman 15 con la funcion de la mesa recogerBazaGanada.
+        let mesa1 = this.#juego.mesa;
+        
+        if (mesa1.recogeBazaGanada(cartaMano, cartasMesa)) {
+            escoba = true;
+        } else {
+            escoba = false;
+        }
+        //juntamos las cartas en un array que empieza con las cartas de la mesa y despues con la carta de la mano.    
+       cartasMesa.forEach(carta => {
+        cartasBaza.push(carta);
+       });
+       cartasBaza.push(cartaMano);
+       //lo mandamos a las bazas
+       this.#bazas.push({cartasBaza,escoba});
+
+       //eliminamos las cartas de la mesa       
+       cartasMesa.forEach(carta => {
+        let cartaParaQitar=carta;
+        let cartaEliminada = this.#juego.mesa.mano.findIndex(carta => carta === cartaParaQitar);
+        this.#juego.mesa.mano.splice(cartaEliminada, 1);
+       });
+       
+       let cartaEliminada = this.#mano.findIndex(carta => carta === cartaMano);
+       this.#mano.splice(cartaEliminada, 1);
+
+
+      
+        return { cartasBaza, escoba };
+       
+        
+
+        //this.#juego.mesa.mano.splice(1,2);
+       // this.#mano.splice(0,1);
+    }
+
+
+
 
     /** El jugador opta por tirar una carta de su mano sin la posibilidad de llevarse ninguna baza. La carta arrojada pasará a formar parte de la mesa
      * @param {Carta} cartaMano - Carta arrojada de la mano del jugador
@@ -112,15 +113,15 @@ class Jugador {
      * @throws {Error} Lanzará un error si el jugador no puede ganar la baza
      */
     arroja(cartaMano) {
-        let mesa1=this.#juego.mesa;
+        let mesa1 = this.#juego.mesa;
         mesa1.recogerCartas(cartaMano);
-        let cartaEliminada = this.#mano.findIndex(carta=> carta ===cartaMano);
-        this.#mano.splice(cartaEliminada,1);
-      
-       
+        let cartaEliminada = this.#mano.findIndex(carta => carta === cartaMano);
+        this.#mano.splice(cartaEliminada, 1);
+
+
         return this;
 
-        
+
     }
 
     // privados
