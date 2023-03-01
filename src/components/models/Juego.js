@@ -91,8 +91,7 @@ class Juego {
      */
     repartir = () => {
 
-
-
+        /*
         let mazo1 = this.#mazo;
         let jugador1 = this.#jugadores[0];
         let jugador2 = this.#jugadores[1];
@@ -110,6 +109,24 @@ class Juego {
         mesa1.recogerCartas(mj1[6], mj1[7], mj1[8], mj1[9]);
 
     }
+*/
+        let mazo = this.#mazo;
+        let mano1 = this.#jugadores[0].miMano;
+        let mano2 = this.#jugadores[1].miMano;
+        let manoMesa = this.#mesa.mano;
+        
+        for (let i = 0; i <= 2; i++) {
+            mano1.push(mazo.pop());
+            mano2.push(mazo.pop());
+        }
+        for (let i = 0; i <= 3; i++) {
+            manoMesa.push(mazo.pop());
+
+        }
+
+        return this;
+    }
+
 
     /** Establece el valor de cada carta según las reglas del juego de la escoba
     * @returns {Juego}} La instancia de este juego
@@ -135,7 +152,7 @@ class Juego {
                 });
         
         */
-// solucion mejorada con funcion isFigura
+        // solucion mejorada con funcion isFigura
         let baraja = [];
         baraja = this.#mazo;
         baraja.forEach(carta => {
