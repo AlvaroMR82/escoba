@@ -56,7 +56,7 @@ class Carta {
     toString = () => this.clave;
 
     getCartaByClave = (clave) => this.#baraja.getCartaByClave(clave);
-    isFigura = () => this.#figura != null;
+    isFigura = () => this.#figura != null && this.#figura != undefined ;
     isAs = () => this.#num === 1;
     isEspadas = () => this.#palo === BarajaEspagnola.Palos.Espadas;
     isOros = () => this.#palo === BarajaEspagnola.Palos.Oros;

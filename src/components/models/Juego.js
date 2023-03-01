@@ -53,29 +53,29 @@ class Juego {
         this.#jugadores[0] = jugador1;
         this.#jugadores[1] = jugador2;
         // inicializo la mesa
-        this.#mesa = new Mesa(this);      
+        this.#mesa = new Mesa(this);
         this.isPartidaIniciada();
         return this;
-       
-        
+
+
     }
 
     /** Indica si una partida ha comenzado
      * @returns {boolean} Verdadero si comenzó Falso en caso contrario
      */
     isPartidaIniciada() {
-        let jugador=this.#jugadores[0];
-        let mano=[];
+        let jugador = this.#jugadores[0];
+        let mano = [];
         mano = jugador.miMano;
-       
-        if ( mano.length == 2){    
+
+        if (mano.length == 2) {
             return true;
 
         }
-          
+
         return false;
 
-        
+
     }
 
 
@@ -90,53 +90,66 @@ class Juego {
      * @returns {Juego}} La instancia de este juego
      */
     repartir = () => {
-      
-        
-        
-        let mazo1=this.#mazo;
-        let jugador1= this.#jugadores[0];
-        let jugador2= this.#jugadores[1];
-        let mesa1=this.#mesa;
-        let mj1=[];
-       
+
+
+
+        let mazo1 = this.#mazo;
+        let jugador1 = this.#jugadores[0];
+        let jugador2 = this.#jugadores[1];
+        let mesa1 = this.#mesa;
+        let mj1 = [];
+
         for (let i = 0; i < 10; i++) {
             mj1.push(mazo1.pop());
-            
+
         }
-        
-        
-        jugador1.recogerCartas(mj1[0],mj1[2],mj1[4]);
-        jugador2.recogerCartas(mj1[1],mj1[3],mj1[5]);
-        mesa1.recogerCartas(mj1[6],mj1[7],mj1[8],mj1[9]);
-       
+
+
+        jugador1.recogerCartas(mj1[0], mj1[2], mj1[4]);
+        jugador2.recogerCartas(mj1[1], mj1[3], mj1[5]);
+        mesa1.recogerCartas(mj1[6], mj1[7], mj1[8], mj1[9]);
+
     }
 
     /** Establece el valor de cada carta según las reglas del juego de la escoba
     * @returns {Juego}} La instancia de este juego
      */
     estableceValorCartas = () => {
-       
+
         let mazo1 = this.#mazo;
-
-
-        mazo1.forEach(carta => {
-            let valor = carta.toString();
-            let vF = valor[1];
-            if (vF == 'C' | vF == 'R' | vF == 'S') {
-                if (vF == "S") {
-                    carta.valor = 8;
-                } else if (vF == "C") {
-                    carta.valor = 9;
-                } else if (vF == "R") {
-                    carta.valor = 10;
-                }
+        /* Solucion inicial usando el codigo de la carta
+                mazo1.forEach(carta => {
+                    let valor = carta.toString();
+                    let vF = valor[1];
+                    if (vF == 'C' | vF == 'R' | vF == 'S') {
+                        if (vF == "S") {
+                            carta.valor = 8;
+                        } else if (vF == "C") {
+                            carta.valor = 9;
+                        } else if (vF == "R") {
+                            carta.valor = 10;
+                        }
+                    } else {
+                        carta.valor = parseInt(vF);
+        
+                    }
+        
+        
+                });
+        
+        */
+// solucion mejorada con funcion isFigura
+        let baraja = [];
+        baraja = this.#mazo;
+        baraja.forEach(carta => {
+            if (carta.isFigura()) {
+                carta.valor = parseInt((carta.numero - 2));
             } else {
-                carta.valor = parseInt(vF);
-
+                carta.valor = parseInt(carta.numero);
             }
-
-
         });
+
+
 
         return this;
 
