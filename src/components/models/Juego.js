@@ -131,10 +131,7 @@ class Juego {
                         }
                     } else {
                         carta.valor = parseInt(vF);
-        
-                    }
-        
-        
+                    }       
                 });
         
         */
