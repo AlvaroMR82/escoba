@@ -64,8 +64,63 @@ class Jugador {
      * @throws {Error} Lanzará un error si el jugador no puede ganar la baza
      */
     juega(cartaMano, ...cartasMesa) {
+        let mano = this.#mano;
+        let manoMesa = this.#juego.mesa.mano;
+        let tieneCartasCorrectas = Boolean;
 
-        
+        if (mano.includes(cartaMano)) {
+            console.log("tengo la carta");
+            cartasMesa.forEach(carta => {
+                if (manoMesa.includes(carta)) {
+                    console.log("la mesa contiene la carta");
+                    tieneCartasCorrectas = true
+                } else {
+                    console.log("la mesa no contiene la carta");
+                    tieneCartasCorrectas = false;
+                }
+
+            });
+
+
+
+
+        } else {
+            console.log("no tengo la carta");
+            throw new Error('No tienes la carta');
+        }
+
+        if (tieneCartasCorrectas) {
+            let cartasBaza = [];
+            let escoba = Boolean;
+            //Comporbamos si la jugada es una escoba y si las cartas suman 15 con la funcion de la mesa recogerBazaGanada.
+            let mesa1 = this.#juego.mesa;
+
+            escoba = mesa1.recogeBazaGanada(cartaMano, cartasMesa);
+
+            //juntamos las cartas en un array que empieza con las cartas de la mesa y despues con la carta de la mano.    
+            cartasMesa.forEach(carta => {
+                cartasBaza.push(carta);
+            });
+            cartasBaza.push(cartaMano);
+            //lo mandamos a las bazas
+            this.#bazas.push({ cartasBaza, escoba });
+
+            //eliminamos las cartas de la mesa       
+            cartasMesa.forEach(carta => {
+                let cartaParaQitar = carta;
+                let cartaEliminada = this.#juego.mesa.mano.findIndex(carta => carta === cartaParaQitar);
+                this.#juego.mesa.mano.splice(cartaEliminada, 1);
+            });
+
+            let cartaEliminada = this.#mano.findIndex(carta => carta === cartaMano);
+            this.#mano.splice(cartaEliminada, 1);
+            return { cartasBaza, escoba };
+
+        }
+
+
+        return { cartasBaza, escoba };
+        /*
         let cartasBaza = [];
         let escoba = Boolean;
         //Comporbamos si la jugada es una escoba y si las cartas suman 15 con la funcion de la mesa recogerBazaGanada.
@@ -102,6 +157,7 @@ class Jugador {
 
         //this.#juego.mesa.mano.splice(1,2);
        // this.#mano.splice(0,1);
+       */
     }
 
 
