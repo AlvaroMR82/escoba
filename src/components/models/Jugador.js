@@ -46,8 +46,10 @@ class Jugador {
 
         let añadirCartas = [];
         añadirCartas = cartas;
-        añadirCartas.concat(this.mano);
+        añadirCartas.concat(this.#mano);
+        
         this.#mano = añadirCartas;
+
         return this;
 
     }
@@ -77,13 +79,14 @@ class Jugador {
                 } else {
                     console.log("la mesa no contiene la carta");
                     tieneCartasCorrectas = false;
+                    
                 }
 
             });
 
         } else {
             console.log("no tengo la carta");
-            throw new Error('No tienes la carta');
+            throw new ReglaException(`No es posible arrojar la carta: ${sieteVelo.clave}`);
         }
 
         if (tieneCartasCorrectas) {

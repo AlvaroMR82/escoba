@@ -62,6 +62,16 @@ describe('SCJ - Construyendo el juego', () => {
         expect(juego.jugadores).toBeTruthy();
         expect(juego.jugadores).toHaveLength(2);
     });
+
+    test('JCJ06 - estableceValorCartas() retorna la propia instancia de juego', () => {
+        const juego = new Juego();
+        expect(juego.estableceValorCartas()).toBe(juego);
+    });
+
+    test('JCJ07 - repartir() retorna la propia instancia de juego', () => {
+        const juego = new Juego();
+        expect(juego.repartir()).toBe(juego);
+    })
 });
 
 describe('SPJ - Preparando el juego... Repartición', () => {
