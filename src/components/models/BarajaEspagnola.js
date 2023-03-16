@@ -59,10 +59,13 @@ class BarajaEspagnola {
      * @returns {Carta} La carta
      */
     cartaByClave(clave){
-        this.#cartas.forEach(unaCarta => {
-            if(unaCarta.clave === clave) return unaCarta;
-        });
-        throw new Error(`Clave de carta no válida o no está en la baraja: ${clave}`)
+        if(typeof clave === 'string' || clave instanceof String){
+            for  (let unaCarta of this.cartas){
+                if(unaCarta.clave === clave) return unaCarta;
+            }
+            throw new Error(`Clave de carta no válida o no está en la baraja: ${clave}`);
+        }
+        else throw new Error(`Clave de carta no válida: ${clave}. Debe ser un string`);
     }
 }
 
