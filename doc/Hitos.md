@@ -8,6 +8,7 @@ Recuerda hacer push de tu rama *release branch* (rb-usuario) y también de las t
 - [2. Hito: Reparte la baraja conforme a las normas del juego de la escoba - `release/nombreApellido/v0.2.0`](#2-hito-reparte-la-baraja-conforme-a-las-normas-del-juego-de-la-escoba---releasenombreapellidov020)
 - [3. Hito: Juega una mano del jugador ganando bazas - `release/nombreApellido/v0.3.0`](#3-hito-juega-una-mano-del-jugador-ganando-bazas---releasenombreapellidov030)
 - [Hito 4: Modelado y diseño del juego de la escoba con orientación a objetos `release/nombreApellido/v0.4.0`](#hito-4-modelado-y-diseño-del-juego-de-la-escoba-con-orientación-a-objetos-releasenombreapellidov040)
+- [Hito 5: Utilizando un bundler para el desarrollo del front. Vite como frontend tool frente a alternativas como Webpack y Turbopack `release/nombreApellido/v0.5.0`](#hito-5-utilizando-un-bundler-para-el-desarrollo-del-front-vite-como-frontend-tool-frente-a-alternativas-como-webpack-y-turbopack-releasenombreapellidov050)
 
 ## 1. Hito: Construye una baraja y represéntala en un tapete - `release/nombreApellido/v0.1.0`
 
@@ -107,3 +108,21 @@ Recuerda hacer push de tu rama *release branch* (rb-usuario) y también de las t
     # Cuidado ya que se sobreescibirá cualquier cambio sobre los ficheros *.test.js
     npm run test:update
     ```
+
+## Hito 5: Utilizando un bundler para el desarrollo del front. Vite como frontend tool frente a alternativas como Webpack y Turbopack `release/nombreApellido/v0.5.0`
+
+En este hito el objeto es incluir la herramienta [Vitejs](https://vitejs.dev) como soporte para el desarrollo de tu front.
+
+Se aportarán contenidos adicionales para ayudarte en este incremento.
+
+Los objetivos son:
+
+- Debes lograr que no afecte al desarrollo de tu modelo logrado en el hito anterior. No debes modificar nada del mismo si ya satisfacía los tests.
+- Los tests deben seguir funcionando como hasta ahora. Nada debe cambiar a este respecto en el repo.
+- Deber proporcionar un ambiente de desarrollo a través de Vite ejecutando la siguiente instrucción: `npm run dev`.
+- Debes arrastrar toda la lógica de tu hito 3 a este fichero `src/components/escoba.js`.
+- Debes crear la *template* html que utilizamos en el hito 3 junto con los estilos previamente empleados.
+- Debes hacer que se represente el juego gráficamente y sea funcional, tal y como se logró en el hito 3.
+- No debes consumir la lógica del modelo. Esa es la refactorización que realizarás en el próximo hito.
+- Debes valerte de las dependencias manejadas por `npm` para utilizar la library [*underscore*](https://www.npmjs.com/package/underscore).
+- Trata también de utilizar `npm` para gestionar la dependencia con bootstrap.
