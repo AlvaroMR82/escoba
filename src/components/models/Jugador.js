@@ -43,9 +43,7 @@ class Jugador {
      * @returns {Jugador} - la instancia del jugador
      */
     recogerCartas = (...cartas) => {
-        console.log("carta 1" + cartas[0]);
-        console.log("carta 2" + cartas[1]);
-        console.log("carta 3" + cartas[2]);
+       
 
         let mano= this.miMano;
         cartas.forEach(carta => {
@@ -54,9 +52,7 @@ class Jugador {
         });
         
         this.#mano=mano;
-        console.log("carta 1" + this.#mano[0]);
-        console.log("carta 2" + this.#mano[1]);
-        console.log("carta 3" + this.#mano[2]);
+        
 
         return this;
 
@@ -94,7 +90,7 @@ class Jugador {
 
         } else {
             console.log("no tengo la carta");
-            throw new ReglaException(`No es posible arrojar la carta: ${sieteVelo.clave}`);
+            throw new ReglaException(`No es posible jugar la carta: ${cartaMano.clave}`);
         }
 
         if (tieneCartasCorrectas) {
@@ -147,9 +143,6 @@ class Jugador {
         let mano = this.miMano;
         if (mano.includes(cartaMano)) {
             console.log("tengo la carta");
-
-
-
             let mesa1 = this.#juego.mesa;
             mesa1.recogerCartas(cartaMano);
             let cartaEliminada = this.#mano.findIndex(carta => carta === cartaMano);
@@ -159,9 +152,7 @@ class Jugador {
 
          } else {
            
-              
-           
-              throw new ReglaException(`No es posible arrojar la carta: ${sieteVelo.clave}`);
+              throw new ReglaException(`No es posible arrojar la carta: ${cartaMano.clave}`);
         }
 
 
