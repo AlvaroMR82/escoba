@@ -43,12 +43,20 @@ class Jugador {
      * @returns {Jugador} - la instancia del jugador
      */
     recogerCartas = (...cartas) => {
+        console.log("carta 1" + cartas[0]);
+        console.log("carta 2" + cartas[1]);
+        console.log("carta 3" + cartas[2]);
 
-        let añadirCartas = [];
-        añadirCartas = cartas;
-        añadirCartas.concat(this.#mano);
+        let mano= this.miMano;
+        cartas.forEach(carta => {
+            mano.push(carta);
+            
+        });
         
-        this.#mano = añadirCartas;
+        this.#mano=mano;
+        console.log("carta 1" + this.#mano[0]);
+        console.log("carta 2" + this.#mano[1]);
+        console.log("carta 3" + this.#mano[2]);
 
         return this;
 
@@ -136,10 +144,26 @@ class Jugador {
      * @throws {Error} Lanzará un error si el jugador no puede ganar la baza
      */
     arroja(cartaMano) {
-        let mesa1 = this.#juego.mesa;
-        mesa1.recogerCartas(cartaMano);
-        let cartaEliminada = this.#mano.findIndex(carta => carta === cartaMano);
-        this.#mano.splice(cartaEliminada, 1);
+        let mano = this.miMano;
+        if (mano.includes(cartaMano)) {
+            console.log("tengo la carta");
+
+
+
+            let mesa1 = this.#juego.mesa;
+            mesa1.recogerCartas(cartaMano);
+            let cartaEliminada = this.#mano.findIndex(carta => carta === cartaMano);
+            this.#mano.splice(cartaEliminada, 1);
+    
+
+
+         } else {
+           
+              
+           
+              throw new ReglaException(`No es posible arrojar la carta: ${sieteVelo.clave}`);
+        }
+
 
 
         return this;
@@ -150,5 +174,11 @@ class Jugador {
     // privados
 
 }
-
+class ReglaException extends Error {
+    constructor(message) {
+      super(message);
+      this.name = "ReglaException";
+    }
+  }
 export { Jugador }
+export {ReglaException}
