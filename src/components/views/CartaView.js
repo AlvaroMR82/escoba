@@ -8,38 +8,44 @@ class CartaView {
     #model
     #selectorCss
 
-    constructor(src,visible,selectorCss){
+    constructor(model,visible,selectorCss){
         //TODO: Construir este vista (puede que haga falta parametrizarlo)
-        let element = document.createElement('img');
-        
-        if(visible){
-            element.src = src;
-        }else{
-            element.src = BACK_CARD;
-        }
-        element.className = "carta";
-        this.selectorCss= selectorCss;      
+       
+        this.#model= model;
+        this.#selectorCss= selectorCss;      
         this.#visible=visible;
-        this.#element=element;
+        
     }
 
     render(elemento){
         //TODO; Manipulación del DOM para renderizado de una carta (crear img, agregarla, etc.)
+        let element = document.createElement('img');
+        
+        if(this.#visible){
+            element.src = this.#model;
+        }else{
+            element.src = CartaView.BACK_CARD;
+        }
+
+        element.className = "carta";
+        element.classList.add(this.#selectorCss);
         let doc= document.getElementById(elemento);
-        doc.append(this);
+        doc.append(element);
+        this.#element=element;
+
     }
 
     toggleSelection() {
-        this.#element.classList.toggle("carta-seleccionada")
+        this.#element.classList.toggle(CSS_SELECTED_SELECTOR)
     }
 
     enableSelection() {
-        this.#element.classList.add("carta-seleccionada")
+        this.#element.classList.add(CSS_SELECTED_SELECTOR)
 
     }
 
     disableSelection() {
-        this.#element.classList.remove("carta-seleccionada")
+        this.#element.classList.remove(CSS_SELECTED_SELECTOR)
     }
 }
 export { CartaView }

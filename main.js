@@ -1,5 +1,5 @@
 import './style.css'
-import './src/components/escoba.js'
-import './src/components/views/CartaView'
+//import './src/components/prueba1'
+import './src/components/controllers/sceneController'
 
 

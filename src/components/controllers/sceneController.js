@@ -9,10 +9,10 @@ class SceneController {
 
     constructor() {
         //TODO: Construir este controller (puede que haga falta parametrizarlo)
-        this._creaModelo;
-        this._crearEscena;
-        this._clickHandlerNuevoJuego;
-        this._registrarEventos;
+        self._creaModelo();
+        self._crearEscena();
+        self._clickHandlerNuevoJuego();
+        self._registrarEventos();
     }
 
     _registrarEventos = () => {
@@ -26,6 +26,8 @@ class SceneController {
 
     _creaModelo = (barajar = false) => {
         let juego = new Juego();
+        juego.estableceValorCartas();
+        juego.repartir();
         this.#juego = juego;
     }
 
@@ -34,11 +36,6 @@ class SceneController {
         let mesa = new MesaController(this.#juego);
         let jugador1 = new JugadorController(this.#juego);
         let jugador2 = new JugadorController(this.#juego);
-
-        
- 
-
-
     }
 
 }

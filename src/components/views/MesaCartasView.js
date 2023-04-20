@@ -8,12 +8,26 @@ class MesaCartasView {
     #cartasViews = [];
     #mesaModel;
 
-    constructor() {
+    constructor(mesa) {
         //TODO: Construir este vista (puede que haga falta parametrizarlo)
+        this.#mesaModel=mesa;
+        
+       
     }
 
     _construirVistas(){
         //TODO: Construir las vistas que agrega
+        let mano=[];
+        mano = this.#mesaModel.mano;
+
+      for (let i = 0; i < mano.length; i++) {
+        let selectorCss="carta";
+       
+        let src= "assets/img/cartas/" + mano[i].clave + ".png";
+
+        this.#cartasViews.push(new CartaView(src,true,selectorCss));
+        
+      }
     }
 
     getSelection(){
@@ -22,6 +36,9 @@ class MesaCartasView {
 
     render(){
         //TODO; Manipulación del DOM para ubicación de las cartas
+        this.#cartasViews.forEach(carta => {
+            carta.render("mesa");
+        });
     }
 }
 

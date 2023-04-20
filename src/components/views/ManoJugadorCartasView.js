@@ -1,3 +1,4 @@
+import { Carta } from "../models/Carta";
 import { CartaView } from "./CartaView";
 
 export class ManoJugadorCartasView {
@@ -15,12 +16,29 @@ export class ManoJugadorCartasView {
      */
     #posicionJugador = null;
 
-    constructor() {
+    constructor(jugador, posicionjugador, visible) {
         //TODO: Construir este vista (puede que haga falta parametrizarlo)
+        this.#jugador = jugador;
+        this.#posicionJugador = posicionjugador;
+        this.#manoVisible = visible;
+
     }
 
-    _contruirVistas(){
+    _contruirVistas() {
         //TODO: Construye la CartaView de la mano de un jugador
+        let mano = [];
+        mano = this.#jugador.miMano;
+        
+        for (let i = 0; i < mano.length; i++) {
+        
+            
+            let carta = new CartaView("assets/img/cartas/" + mano[i].clave + ".png", this.#manoVisible, "carta-en-mano");
+            this.#cartasViews[i] = carta;
+
+        }
+
+        
+
     }
 
     /**
@@ -28,6 +46,7 @@ export class ManoJugadorCartasView {
      */
     isCartaSelected() {
         //TODO: Implementar
+
     }
 
     /**
@@ -35,7 +54,7 @@ export class ManoJugadorCartasView {
      * @throws {Error} - Lanza error si no hay ninguna selección
      * @see isCartaSelected()
      */
-    getModelSelection(){
+    getModelSelection() {
         //TODO: Implementar
     }
 
@@ -44,23 +63,32 @@ export class ManoJugadorCartasView {
      * @param {CartaView} laCartaView - carta que se quiere seleccionar/des-seleccionar
      * @returns boolean - True si queda alguna carta seleccionada; False en caso contrario
      */
-    toggleSelectionCarta( laCartaView ) {
+    toggleSelectionCarta(laCartaView) {
         //TODO: Implementar
     }
 
-    toogleHideCartas(){
+    toogleHideCartas() {
         // TODO: Muestra/Oculta carta
     }
 
-    hideCartas(){
+    hideCartas() {
         //TODO: Oculta carta
     }
 
-    showCartas(){
+    showCartas() {
         //TODO: Muestra carta
     }
 
     render() {
         //TODO; Manipulación del DOM para ubicación de las cartas
+        if (this.#posicionJugador == 0) {
+            this.#cartasViews.forEach(carta => {
+                carta.render("mano2");
+            });
+        } else if (this.#posicionJugador == 1) {
+            this.#cartasViews.forEach(carta => {
+                carta.render("mano1");
+            });
+        }
     }
 }
