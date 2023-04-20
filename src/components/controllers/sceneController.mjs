@@ -8,7 +8,11 @@ class SceneController {
     #juego;
 
     constructor() {
-         //TODO: Construir este controller (puede que haga falta parametrizarlo)
+        //TODO: Construir este controller (puede que haga falta parametrizarlo)
+        this._creaModelo;
+        this._crearEscena;
+        this._clickHandlerNuevoJuego;
+        this._registrarEventos;
     }
 
     _registrarEventos = () => {
@@ -16,15 +20,25 @@ class SceneController {
     }
 
     _clickHandlerNuevoJuego = () => {
-        //TODO: Implementar handler del botón de inicio de nuevo juego
+        let botonRepartir = document.getElementById("btn-nuevo-juego");
+        botonRepartir.addEventListener("click", barajarBoton);
     }
 
-    _creaModelo = (barajar=false) => {
-        // TODO: Crea el juego (model)
+    _creaModelo = (barajar = false) => {
+        let juego = new Juego();
+        this.#juego = juego;
     }
 
     _crearEscena = () => {
-        //TODO: Crea los controladores: MesaController y un JugadorController por cada jugador
+
+        let mesa = new MesaController(this.#juego);
+        let jugador1 = new JugadorController(this.#juego);
+        let jugador2 = new JugadorController(this.#juego);
+
+        
+ 
+
+
     }
 
 }

@@ -9,6 +9,7 @@ class MesaController {
 
     constructor(sceneController, juego) {
         //TODO: Construir este controller (puede que haga falta parametrizarlo)
+        
     }
 
     getCartasViews() {
