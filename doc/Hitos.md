@@ -7,8 +7,9 @@ Recuerda hacer push de tu rama *release branch* (rb-usuario) y también de las t
 - [1. Hito: Construye una baraja y represéntala en un tapete - `release/nombreApellido/v0.1.0`](#1-hito-construye-una-baraja-y-represéntala-en-un-tapete---releasenombreapellidov010)
 - [2. Hito: Reparte la baraja conforme a las normas del juego de la escoba - `release/nombreApellido/v0.2.0`](#2-hito-reparte-la-baraja-conforme-a-las-normas-del-juego-de-la-escoba---releasenombreapellidov020)
 - [3. Hito: Juega una mano del jugador ganando bazas - `release/nombreApellido/v0.3.0`](#3-hito-juega-una-mano-del-jugador-ganando-bazas---releasenombreapellidov030)
-- [Hito 4: Modelado y diseño del juego de la escoba con orientación a objetos `release/nombreApellido/v0.4.0`](#hito-4-modelado-y-diseño-del-juego-de-la-escoba-con-orientación-a-objetos-releasenombreapellidov040)
-- [Hito 5: Utilizando un bundler para el desarrollo del front. Vite como frontend tool frente a alternativas como Webpack y Turbopack `release/nombreApellido/v0.5.0`](#hito-5-utilizando-un-bundler-para-el-desarrollo-del-front-vite-como-frontend-tool-frente-a-alternativas-como-webpack-y-turbopack-releasenombreapellidov050)
+- [4. Hito 4: Modelado y diseño del juego de la escoba con orientación a objetos `release/nombreApellido/v0.4.0`](#4-hito-4-modelado-y-diseño-del-juego-de-la-escoba-con-orientación-a-objetos-releasenombreapellidov040)
+- [5. Hito: Utilizando un bundler para el desarrollo del front. Vite como frontend tool frente a alternativas como Webpack y Turbopack `release/nombreApellido/v0.5.0`](#5-hito-utilizando-un-bundler-para-el-desarrollo-del-front-vite-como-frontend-tool-frente-a-alternativas-como-webpack-y-turbopack-releasenombreapellidov050)
+- [6. Hito: De acuerdo al patrón arquitectónico MVC (Model-View-Controller), y teniendo desarrollada parte de la lógica del juego (en el Model), se implementarán los componestes *Views* y *Controllers* `release/nombreApellido/v0.6.0`](#6-hito-de-acuerdo-al-patrón-arquitectónico-mvc-model-view-controller-y-teniendo-desarrollada-parte-de-la-lógica-del-juego-en-el-model-se-implementarán-los-componestes-views-y-controllers-releasenombreapellidov060)
 
 ## 1. Hito: Construye una baraja y represéntala en un tapete - `release/nombreApellido/v0.1.0`
 
@@ -80,7 +81,7 @@ Recuerda hacer push de tu rama *release branch* (rb-usuario) y también de las t
 
     ![Captura 03-mano-escoba-demo-h3-1.gif](img/03-mano-escoba-demo-h3-1.gif)
 
-## Hito 4: Modelado y diseño del juego de la escoba con orientación a objetos `release/nombreApellido/v0.4.0`
+## 4. Hito 4: Modelado y diseño del juego de la escoba con orientación a objetos `release/nombreApellido/v0.4.0`
 
 1. El enfoque ha cambiado. Manejar la complejidad del juego con un paradigma estructurado resulta demasiado complicado. Por eso **giraremos en este hito a un enfoque de paradigma. Concretamente Orientado a Objetos**.
 
@@ -109,7 +110,7 @@ Recuerda hacer push de tu rama *release branch* (rb-usuario) y también de las t
     npm run test:update
     ```
 
-## Hito 5: Utilizando un bundler para el desarrollo del front. Vite como frontend tool frente a alternativas como Webpack y Turbopack `release/nombreApellido/v0.5.0`
+## 5. Hito: Utilizando un bundler para el desarrollo del front. Vite como frontend tool frente a alternativas como Webpack y Turbopack `release/nombreApellido/v0.5.0`
 
 En este hito el objeto es incluir la herramienta [Vitejs](https://vitejs.dev) como soporte para el desarrollo de tu front.
 
@@ -126,3 +127,37 @@ Los objetivos son:
 - No debes consumir la lógica del modelo. Esa es la refactorización que realizarás en el próximo hito.
 - Debes valerte de las dependencias manejadas por `npm` para utilizar la library [*underscore*](https://www.npmjs.com/package/underscore).
 - Trata también de utilizar `npm` para gestionar la dependencia con bootstrap.
+
+## 6. Hito: De acuerdo al patrón arquitectónico MVC (Model-View-Controller), y teniendo desarrollada parte de la lógica del juego (en el Model), se implementarán los componestes *Views* y *Controllers* `release/nombreApellido/v0.6.0`
+
+En este hito el objeto es implementar el juego con las mismas especificaciones del [Hito 3](#3-hito-juega-una-mano-del-jugador-ganando-bazas---releasenombreapellidov030), solo que empleando el patrón de diseño arquitectónico **MVC** [[español]](https://es.wikipedia.org/wiki/Modelo–vista–controlador) [[ingles]](https://en.wikipedia.org/wiki/Model–view–controller).
+
+El componente Modelo (*Model*), se ha desarrollado ya en el [Hito 4](#4-hito-4-modelado-y-diseño-del-juego-de-la-escoba-con-orientación-a-objetos-releasenombreapellidov040), aplicando la técnica DDD (Domain Driven Design) y la técnica TDD (Test Driven Design). Ahora tendrás que implementar el Componente View (formado por un conjunto de vistas) y el Componente Controller (formado por un conjunto de controladores).
+
+Debes tener en cuenta la descripción del patrón y las responsabilidades de cada uno de estos componentes y **las relaciones que mantienen entre sí**:
+
+```mermaid
+classDiagram
+    Controller-->Model : Dependency
+    Controller-->View : Dependency
+    View-->Model : Association
+    Model 
+    class Model{
+        +foo()
+    }
+    class View{
+        render()
+    }
+    class Controller{
+        registrarEventos()
+        desRegistrarEventos()
+    }
+```
+
+Ten además en cuenta lo siguiente:
+
+1. No tendrás que implementar ahora tu modelo (implementado en el Hito 4). Quizá necesites, te convenga o dedidas refactorizar algo en el mismo, pero no debebiera ser necesario si has satisfecho todos los tests. Pero, **si refactorizas el modelo, es importante que todos los tests sigan dando el resultado esperado satisfaciéndolos todos**.
+
+2. Es importante que respetes las relaciones del patrón. El Modelo nunca importará ninguna clase de Vista o Controlador. La Vista tampoco importará Controlador.
+
+3. Te convendrá y mucho emplear el [Patrón de Diseño *Observer*](https://es.wikipedia.org/wiki/Observer_(patrón_de_diseño)) por si el Modelo tiene que comunicar algo al resto de componentes. Daremos más información al respecto y explicaremos este patrón.
