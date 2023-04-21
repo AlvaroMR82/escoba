@@ -1,5 +1,7 @@
 
 import { Juego } from "../models/Juego"
+import { MesaCartasView } from "../views/MesaCartasView";
+import { PilaCartasView } from "../views/PilaCartasView";
 import { JugadorController } from './JugadorController';
 import { MesaController } from './MesaController';
 
@@ -9,10 +11,7 @@ class SceneController {
 
     constructor() {
         //TODO: Construir este controller (puede que haga falta parametrizarlo)
-        self._creaModelo();
-        self._crearEscena();
-        self._clickHandlerNuevoJuego();
-        self._registrarEventos();
+        
     }
 
     _registrarEventos = () => {
@@ -21,21 +20,26 @@ class SceneController {
 
     _clickHandlerNuevoJuego = () => {
         let botonRepartir = document.getElementById("btn-nuevo-juego");
-        botonRepartir.addEventListener("click", barajarBoton);
+       //botonRepartir.addEventListener("click",  );
     }
 
     _creaModelo = (barajar = false) => {
         let juego = new Juego();
-        juego.estableceValorCartas();
         juego.repartir();
         this.#juego = juego;
     }
 
     _crearEscena = () => {
-
-        let mesa = new MesaController(this.#juego);
-        let jugador1 = new JugadorController(this.#juego);
-        let jugador2 = new JugadorController(this.#juego);
+        
+       
+        let mesa = new MesaController(this,this.#juego);
+        let jugador1 = new JugadorController(this.#juego.jugadores[0],0,false);
+        let jugador2 = new JugadorController(this.#juego.jugadores[1],1,true);    
+        let mazo = new PilaCartasView(this.#juego.mazo,"mano0");
+         mesa.getCartasViews();
+         mesa.redraw();
+         jugador1._redraw();
+         jugador2._redraw();
     }
 
 }

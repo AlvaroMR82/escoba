@@ -3,17 +3,23 @@ import { PilaCartasView } from "../views/PilaCartasView"
 
 class MesaController {
 
-    #sceneController
-    #mesaCartasView
-    #mesaTacoView
+    #sceneController;
+    #mesaCartasView;
+    #mesaTacoView;
 
-    constructor(sceneController, juego) {
+    constructor(sceneController,juego) {
         //TODO: Construir este controller (puede que haga falta parametrizarlo)
-        
+        this.#sceneController= sceneController;
+        let mcv = new MesaCartasView(juego.mesa);
+        this.#mesaCartasView=mcv;
+
+
     }
 
     getCartasViews() {
         //TODO: Obtiene las vistas de las cartas sobre la mesa
+        this.#mesaCartasView._construirVistas();
+
     }
 
     getCartasModelsSelected() {
@@ -26,7 +32,7 @@ class MesaController {
 
     redraw() {
         //TODO: Envía mensaje para que todas las cartas de la mesa se redibujen
-        
+        this.#mesaCartasView.render();
     }
 
     update(data){

@@ -8,8 +8,10 @@ class JugadorController {
     #mesaController;
     #jugadorModel;
 
-    constructor() {
+    constructor(jugador,num,visible) {
         //TODO: Construir este controller (puede que haga falta parametrizarlo)
+        let jug = new ManoJugadorCartasView(jugador,num,visible);
+        this.#manoJugadorCartasView=jug;
     }
 
     // Events
@@ -45,6 +47,8 @@ class JugadorController {
     _redraw(){
         // Redibujar
         // Envía mensaje a las vistas para que se redibujen
+        this.#manoJugadorCartasView._contruirVistas();
+        this.#manoJugadorCartasView.render();
     }
 
     update(){
