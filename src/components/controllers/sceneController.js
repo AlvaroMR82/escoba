@@ -20,7 +20,7 @@ class SceneController {
 
     _clickHandlerNuevoJuego = () => {
         let botonRepartir = document.getElementById("btn-nuevo-juego");
-       //botonRepartir.addEventListener("click",  );
+      // botonRepartir.addEventListener("click",  );
     }
 
     _creaModelo = (barajar = false) => {
@@ -35,11 +35,11 @@ class SceneController {
         let mesa = new MesaController(this,this.#juego);
         let jugador1 = new JugadorController(this.#juego.jugadores[0],0,false);
         let jugador2 = new JugadorController(this.#juego.jugadores[1],1,true);    
-        let mazo = new PilaCartasView(this.#juego.mazo,"mano0");
-         mesa.getCartasViews();
-         mesa.redraw();
-         jugador1._redraw();
-         jugador2._redraw();
+        
+        mesa.redraw();
+        jugador1._redraw();
+        jugador2._redraw();
+        jugador2._registrarEventosManoJugador();
     }
 
 }

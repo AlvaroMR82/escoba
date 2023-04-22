@@ -17,7 +17,7 @@ class PilaCartasView {
             this.#cartasViews.push(new CartaView(src,false,selectorCss));
             
           }
-          console.log(this.#cartasViews);
+          
           this.#cartasViews.forEach(carta => {
             carta.render(elemento);
         });

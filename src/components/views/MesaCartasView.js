@@ -32,6 +32,7 @@ class MesaCartasView {
 
     getSelection(){
         //TODO: Retorna la coleccion de vistas seleccionadas
+        return this.#cartasViews;
     }
 
     render(){

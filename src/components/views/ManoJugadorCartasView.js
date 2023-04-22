@@ -56,6 +56,7 @@ export class ManoJugadorCartasView {
      */
     getModelSelection() {
         //TODO: Implementar
+        return this.#cartasViews;
     }
 
     /**
@@ -65,6 +66,7 @@ export class ManoJugadorCartasView {
      */
     toggleSelectionCarta(laCartaView) {
         //TODO: Implementar
+        laCartaView.toggleSelection();
     }
 
     toogleHideCartas() {

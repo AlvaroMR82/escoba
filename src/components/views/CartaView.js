@@ -36,16 +36,19 @@ class CartaView {
     }
 
     toggleSelection() {
-        this.#element.classList.toggle(CSS_SELECTED_SELECTOR)
+        this.#element.classList.toggle(CartaView.CSS_SELECTED_SELECTOR);
     }
 
     enableSelection() {
-        this.#element.classList.add(CSS_SELECTED_SELECTOR)
+        this.#element.classList.add(CartaView.CSS_SELECTED_SELECTOR);
 
     }
 
     disableSelection() {
-        this.#element.classList.remove(CSS_SELECTED_SELECTOR)
+        this.#element.classList.remove( CartaView.CSS_SELECTED_SELECTOR);
+    }
+    getModel(){
+        return this.#model;
     }
 }
 export { CartaView }

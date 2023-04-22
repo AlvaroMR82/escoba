@@ -11,14 +11,17 @@ class MesaController {
         //TODO: Construir este controller (puede que haga falta parametrizarlo)
         this.#sceneController= sceneController;
         let mcv = new MesaCartasView(juego.mesa);
+         mcv._construirVistas();    
         this.#mesaCartasView=mcv;
 
+        let mazo = new PilaCartasView(juego.mazo,"mano0");
+        this.#mesaTacoView= mazo;
 
     }
 
     getCartasViews() {
         //TODO: Obtiene las vistas de las cartas sobre la mesa
-        this.#mesaCartasView._construirVistas();
+      return this.#mesaCartasView.getSelection();
 
     }
 
