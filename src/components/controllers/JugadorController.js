@@ -9,47 +9,29 @@ class JugadorController {
     #mesaController;
     #jugadorModel;
 
-    constructor(jugador,num,visible) {
+    constructor(jugador, num, visible) {
         //TODO: Construir este controller (puede que haga falta parametrizarlo)
-        let jug = new ManoJugadorCartasView(jugador,num,visible);
-        this.#manoJugadorCartasView=jug;
-        this.#jugadorModel=jugador;
+        let jug = new ManoJugadorCartasView(jugador, num, visible);
+        this.#manoJugadorCartasView = jug;
+        this.#jugadorModel = jugador;
     }
 
     // Events
     _registrarEventosManoJugador() {
-        /* TODO: registrar eventos cartas mano
-        let cartas = this.#manoJugadorCartasView.getModelSelection();
-        
-        cartas.forEach(carta => {
-            console.log(carta.getModel());
-             //this._onClickCartaManoHandler(carta.getModel());       
+        /*
+        let element = document.querySelector('img[src="assets/img/cartas/cC.png"]');
+element.addEventListener('click', function () {_onClickCartaManoHandler(element)});
+*/  let cartasListener = [];
+        cartasListener = this.#manoJugadorCartasView.getModelSelection();
+        cartasListener.forEach(cartasL => {
+            let Selector = "img[src='" + cartasL.getModel() + "']";
+            let Elemento = document.querySelector(Selector);
+            Elemento.addEventListener('click', this._onClickCartaManoHandler.bind(this, this));
+
         });
-        
-       // self._onClickCartaManoHandler(this.#manoJugadorCartasView[0].getModel());
-       
-      for (let  i= 0;  i< cartas.length; i++) {
-        console.log(cartas[i].getModel());
-        let src="";
-        src=cartas[i].getModel();
-        console.log(src);
-        let element = document.querySelector('img[src="assets/img/cartas/c1.png"]');
-        console.log(element);
-        element.addEventListener('click', toogleSelection()  );
 
-        //this._onClickCartaManoHandler({element});
-      }
-        
-      console.log(cartas[1].getModel());
-      
 
-let cartas= this.#manoJugadorCartasView.getModelSelection();
 
-      this.#manoJugadorCartasView.toggleSelectionCarta(cartas[0]);
-      let element = document.querySelector('img[src="assets/img/cartas/cC.png"]');
-      console.log(element);
-      element.addEventListener('click', this.#manoJugadorCartasView.toggleSelectionCarta(cartas[0]) );
-      */
     }
 
     _desRegistrarEventosManoJugador() {
@@ -64,31 +46,45 @@ let cartas= this.#manoJugadorCartasView.getModelSelection();
         // TODO: des-registrar eventos cartas mesa
     }
 
-    _onClickCartaManoHandler = ( { srcElement } ) => {
+    _onClickCartaManoHandler = ({ srcElement }, element) => {
         //TODO: Implementar handler del clic (seleccionar carta) sobre una cara de la mano
-        console.log(srcElement);
-        let element = document.querySelector(`img[src="${srcElement}"]`);
-        element.addEventListener('click',  );
+       console.debug(element);
+       // console.log(srcElement);
+        let cartas = [];
+        cartas = this.#manoJugadorCartasView.getModelSelection();
+        /*
+        if (element === cartas[0]) {
+            console.log("son iguales");
+        } else {
+            console.log("no son iguales");
+        }
+        */
+        this.#manoJugadorCartasView.toggleSelectionCarta(cartas[0]);
+        this.#manoJugadorCartasView.toggleSelectionCarta(cartas[2]);
+        this.#manoJugadorCartasView.toggleSelectionCarta(cartas[1]);
+
+
+        // this.#manoJugadorCartasView.toggleSelectionCarta(this.#manoJugadorCartasView.getModelSelection[0]);
 
     }
 
-    _onClickCartaMesaHandler = ( { srcElement } ) => {
+    _onClickCartaMesaHandler = ({ srcElement }) => {
         //TODO: Implementar handler del clic (seleccionar carta) sobre una carta de la mesa
     }
 
 
-    _onDoubleClickCartaManoHandler = ( { srcElement } ) => {
+    _onDoubleClickCartaManoHandler = ({ srcElement }) => {
         //TODO: Implementar handler del doble clic (arrojar carta) sobre una carta de la mano
     }
 
-    _redraw(){
+    _redraw() {
         // Redibujar
         // Envía mensaje a las vistas para que se redibujen
         this.#manoJugadorCartasView._contruirVistas();
         this.#manoJugadorCartasView.render();
     }
 
-    update(){
+    update() {
         //TODO: Método que recibe notficaciones del modelo (patrón observer)
     }
 

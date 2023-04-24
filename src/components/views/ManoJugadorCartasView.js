@@ -66,7 +66,7 @@ export class ManoJugadorCartasView {
      */
     toggleSelectionCarta(laCartaView) {
         //TODO: Implementar
-        laCartaView.toggleSelection();
+       laCartaView.toggleSelection();
     }
 
     toogleHideCartas() {
