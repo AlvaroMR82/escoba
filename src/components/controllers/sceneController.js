@@ -16,6 +16,7 @@ class SceneController {
 
     _registrarEventos = () => {
         // TODO: registrar eventos de botoneras
+        
     }
 
     _clickHandlerNuevoJuego = () => {
@@ -33,13 +34,15 @@ class SceneController {
         
        
         let mesa = new MesaController(this,this.#juego);
-        let jugador1 = new JugadorController(this.#juego.jugadores[0],0,false);
-        let jugador2 = new JugadorController(this.#juego.jugadores[1],1,true);    
+        let jugador1 = new JugadorController(this.#juego.jugadores[0],0,false,mesa);
+        let jugador2 = new JugadorController(this.#juego.jugadores[1],1,true,mesa);    
         
         mesa.redraw();
         jugador1._redraw();
         jugador2._redraw();
         jugador2._registrarEventosManoJugador();
+        jugador2._registrarEventosMesa();
+        
     }
 
 }

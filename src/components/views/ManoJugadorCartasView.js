@@ -28,25 +28,26 @@ export class ManoJugadorCartasView {
         //TODO: Construye la CartaView de la mano de un jugador
         let mano = [];
         mano = this.#jugador.miMano;
-        
+
         for (let i = 0; i < mano.length; i++) {
-        
-            
+
+
             let carta = new CartaView("assets/img/cartas/" + mano[i].clave + ".png", this.#manoVisible, "carta-en-mano");
             this.#cartasViews[i] = carta;
 
         }
 
-        
+
 
     }
 
     /**
      * @returns boolean - True si hay alguna carta seleccionada false en caso contrario
      */
-    isCartaSelected() {
+    isCartaSelected(seleccionada) {
         //TODO: Implementar
 
+        return seleccionada;
     }
 
     /**
@@ -66,7 +67,7 @@ export class ManoJugadorCartasView {
      */
     toggleSelectionCarta(laCartaView) {
         //TODO: Implementar
-       laCartaView.toggleSelection();
+        laCartaView.toggleSelection();
     }
 
     toogleHideCartas() {

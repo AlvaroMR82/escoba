@@ -9,24 +9,22 @@ class JugadorController {
     #mesaController;
     #jugadorModel;
 
-    constructor(jugador, num, visible) {
+    constructor(jugador, num, visible,mesaController) {
         //TODO: Construir este controller (puede que haga falta parametrizarlo)
         let jug = new ManoJugadorCartasView(jugador, num, visible);
         this.#manoJugadorCartasView = jug;
         this.#jugadorModel = jugador;
+        this.#mesaController=mesaController;
     }
 
     // Events
     _registrarEventosManoJugador() {
-        /*
-        let element = document.querySelector('img[src="assets/img/cartas/cC.png"]');
-element.addEventListener('click', function () {_onClickCartaManoHandler(element)});
-*/  let cartasListener = [];
+        let cartasListener = [];
         cartasListener = this.#manoJugadorCartasView.getModelSelection();
         cartasListener.forEach(cartasL => {
             let Selector = "img[src='" + cartasL.getModel() + "']";
             let Elemento = document.querySelector(Selector);
-            Elemento.addEventListener('click', this._onClickCartaManoHandler.bind(this, this));
+            Elemento.addEventListener('click', this._onClickCartaManoHandler.bind({srcElement:Elemento}));
 
         });
 
@@ -40,28 +38,38 @@ element.addEventListener('click', function () {_onClickCartaManoHandler(element)
 
     _registrarEventosMesa() {
         // TODO: registrar eventos cartas mesa
+        let cartasListener = [];
+        cartasListener = this.#mesaController.getCartasModelsSelected();
+        cartasListener.forEach(cartasL => {
+            let Selector = "img[src='" + cartasL.getModel() + "']";
+            let Elemento = document.querySelector(Selector);
+            Elemento.addEventListener('click', this._onClickCartaMesaHandler.bind({srcElement:Elemento}));
+
+        });
     }
 
     _desRegistrarEventosMesa() {
         // TODO: des-registrar eventos cartas mesa
     }
 
-    _onClickCartaManoHandler = ({ srcElement }, element) => {
+    _onClickCartaManoHandler = ({ srcElement }) => {
         //TODO: Implementar handler del clic (seleccionar carta) sobre una cara de la mano
-       console.debug(element);
-       // console.log(srcElement);
+     
+        let src=srcElement.src.slice(22,46);
         let cartas = [];
         cartas = this.#manoJugadorCartasView.getModelSelection();
-        /*
-        if (element === cartas[0]) {
-            console.log("son iguales");
-        } else {
-            console.log("no son iguales");
+        for (let i = 0; i < cartas.length; i++) {
+            if (src == cartas[i].getModel()) {
+                // carta.toggleSelectionCarta(this);
+                 this.#manoJugadorCartasView.toggleSelectionCarta(cartas[i]);
+                 this.#manoJugadorCartasView.isCartaSelected(true);
+             } 
+            
         }
-        */
-        this.#manoJugadorCartasView.toggleSelectionCarta(cartas[0]);
-        this.#manoJugadorCartasView.toggleSelectionCarta(cartas[2]);
-        this.#manoJugadorCartasView.toggleSelectionCarta(cartas[1]);
+
+
+     
+       
 
 
         // this.#manoJugadorCartasView.toggleSelectionCarta(this.#manoJugadorCartasView.getModelSelection[0]);
@@ -70,6 +78,16 @@ element.addEventListener('click', function () {_onClickCartaManoHandler(element)
 
     _onClickCartaMesaHandler = ({ srcElement }) => {
         //TODO: Implementar handler del clic (seleccionar carta) sobre una carta de la mesa
+        let src=srcElement.src.slice(22,46);
+        let cartas = [];
+        cartas = this.#mesaController.getCartasModelsSelected();
+        for (let i = 0; i < cartas.length; i++) {
+            if (src == cartas[i].getModel()) {
+                // carta.toggleSelectionCarta(this);
+                 this.#manoJugadorCartasView.toggleSelectionCarta(cartas[i]);
+             } 
+            
+        }
     }
 
 

@@ -27,6 +27,7 @@ class MesaController {
 
     getCartasModelsSelected() {
         //TODO: Obtiene las cartas (models) de las cartas que han sido seleccionadas 
+        return this.#mesaCartasView.getSelection();
     }
 
     resetSelection() {
