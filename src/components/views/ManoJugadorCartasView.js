@@ -44,10 +44,14 @@ export class ManoJugadorCartasView {
     /**
      * @returns boolean - True si hay alguna carta seleccionada false en caso contrario
      */
-    isCartaSelected(seleccionada) {
+    isCartaSelected() {
         //TODO: Implementar
-
-        return seleccionada;
+        let arrayCartas1 = document.querySelectorAll('#mano1, .carta-seleccionada');
+        if (arrayCartas1.length == 0) {
+            return false;
+        }
+        return true;
+        
     }
 
     /**
@@ -68,6 +72,7 @@ export class ManoJugadorCartasView {
     toggleSelectionCarta(laCartaView) {
         //TODO: Implementar
         laCartaView.toggleSelection();
+        return this.isCartaSelected();
     }
 
     toogleHideCartas() {

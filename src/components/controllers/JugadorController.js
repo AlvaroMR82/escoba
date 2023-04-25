@@ -9,12 +9,12 @@ class JugadorController {
     #mesaController;
     #jugadorModel;
 
-    constructor(jugador, num, visible,mesaController) {
+    constructor(jugador, num, visible, mesaController) {
         //TODO: Construir este controller (puede que haga falta parametrizarlo)
         let jug = new ManoJugadorCartasView(jugador, num, visible);
         this.#manoJugadorCartasView = jug;
         this.#jugadorModel = jugador;
-        this.#mesaController=mesaController;
+        this.#mesaController = mesaController;
     }
 
     // Events
@@ -24,7 +24,7 @@ class JugadorController {
         cartasListener.forEach(cartasL => {
             let Selector = "img[src='" + cartasL.getModel() + "']";
             let Elemento = document.querySelector(Selector);
-            Elemento.addEventListener('click', this._onClickCartaManoHandler.bind({srcElement:Elemento}));
+            Elemento.addEventListener('click', this._onClickCartaManoHandler.bind({ srcElement: Elemento }));
 
         });
 
@@ -43,7 +43,7 @@ class JugadorController {
         cartasListener.forEach(cartasL => {
             let Selector = "img[src='" + cartasL.getModel() + "']";
             let Elemento = document.querySelector(Selector);
-            Elemento.addEventListener('click', this._onClickCartaMesaHandler.bind({srcElement:Elemento}));
+            Elemento.addEventListener('click', this._onClickCartaMesaHandler.bind({ srcElement: Elemento }));
 
         });
     }
@@ -54,39 +54,49 @@ class JugadorController {
 
     _onClickCartaManoHandler = ({ srcElement }) => {
         //TODO: Implementar handler del clic (seleccionar carta) sobre una cara de la mano
-     
-        let src=srcElement.src.slice(22,46);
+        let src = srcElement.src.slice(22, 46);
+        let clase = srcElement.className;
         let cartas = [];
         cartas = this.#manoJugadorCartasView.getModelSelection();
+        let cartasMesa=[];
+        cartasMesa= this.#mesaController.getCartasModelsSelected();
+         
+        if (this.#manoJugadorCartasView.isCartaSelected() ) {
+            
+            cartas.forEach(carta => {
+                carta.disableSelection();
+            });
+            cartasMesa.forEach(carta => {
+                carta.disableSelection();
+            });
+
+            
+        } 
         for (let i = 0; i < cartas.length; i++) {
             if (src == cartas[i].getModel()) {
                 // carta.toggleSelectionCarta(this);
-                 this.#manoJugadorCartasView.toggleSelectionCarta(cartas[i]);
-                 this.#manoJugadorCartasView.isCartaSelected(true);
-             } 
-            
+                this.#manoJugadorCartasView.toggleSelectionCarta(cartas[i]);
+            }
+
         }
-
-
-     
        
-
-
-        // this.#manoJugadorCartasView.toggleSelectionCarta(this.#manoJugadorCartasView.getModelSelection[0]);
-
+        
     }
 
     _onClickCartaMesaHandler = ({ srcElement }) => {
         //TODO: Implementar handler del clic (seleccionar carta) sobre una carta de la mesa
-        let src=srcElement.src.slice(22,46);
-        let cartas = [];
-        cartas = this.#mesaController.getCartasModelsSelected();
-        for (let i = 0; i < cartas.length; i++) {
-            if (src == cartas[i].getModel()) {
-                // carta.toggleSelectionCarta(this);
-                 this.#manoJugadorCartasView.toggleSelectionCarta(cartas[i]);
-             } 
-            
+        if (this.#manoJugadorCartasView.isCartaSelected()) {
+            let src = srcElement.src.slice(22, 46);
+            let cartas = [];
+            cartas = this.#mesaController.getCartasModelsSelected();
+            for (let i = 0; i < cartas.length; i++) {
+                if (src == cartas[i].getModel()) {
+                    // carta.toggleSelectionCarta(this);
+                    this.#manoJugadorCartasView.toggleSelectionCarta(cartas[i]);
+
+                }
+
+            }
         }
     }
 

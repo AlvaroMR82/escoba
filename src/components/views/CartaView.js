@@ -50,5 +50,8 @@ class CartaView {
     getModel(){
         return this.#model;
     }
+    getSelectorCss(){
+        return this.#selectorCss;
+    }
 }
 export { CartaView }
