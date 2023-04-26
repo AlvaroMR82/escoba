@@ -37,6 +37,8 @@ class MesaCartasView {
 
     render(){
         //TODO; Manipulación del carta.addEventListener('click',DOM para ubicación de las cartas
+        let manoJugador = document.getElementById("mesa");
+        manoJugador.innerHTML = "";
         this.#cartasViews.forEach(carta => {
             carta.render("mesa");
         });

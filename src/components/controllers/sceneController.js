@@ -44,7 +44,9 @@ class SceneController {
         jugador2._registrarEventosMesa();
         
     }
-
+    _getJuego(){
+        return this.#juego;
+    }
 }
 
 const init = () => new SceneController();

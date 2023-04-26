@@ -1,6 +1,8 @@
 import { forEach } from "underscore";
 import { ManoJugadorCartasView } from "../views/ManoJugadorCartasView"
 import { PilaCartasView } from "../views/PilaCartasView"
+import { MesaController } from "./MesaController";
+import { Juego } from "../models/Juego";
 
 class JugadorController {
 
@@ -37,7 +39,7 @@ class JugadorController {
         // TODO: des-registrar eventos cartas mano
     }
 
-    _registrarEventosMesa() {
+    _registrarEventosMesa() {this.redraw;
         // TODO: registrar eventos cartas mesa
         let cartasListener = [];
         cartasListener = this.#mesaController.getCartasViews();
@@ -123,6 +125,10 @@ class JugadorController {
         this.#manoJugadorCartasView=nuevoreparto;
         this._redraw();
         this._registrarEventosManoJugador();
+       
+
+       
+       
     }
 
     _redraw() {
