@@ -25,6 +25,7 @@ class JugadorController {
             let Selector = "img[src='" + cartasL.getModel() + "']";
             let Elemento = document.querySelector(Selector);
             Elemento.addEventListener('click', this._onClickCartaManoHandler.bind({ srcElement: Elemento }));
+            Elemento.addEventListener('dblclick', this._onDoubleClickCartaManoHandler.bind({ srcElement: Elemento }));
 
         });
 
@@ -39,11 +40,12 @@ class JugadorController {
     _registrarEventosMesa() {
         // TODO: registrar eventos cartas mesa
         let cartasListener = [];
-        cartasListener = this.#mesaController.getCartasModelsSelected();
+        cartasListener = this.#mesaController.getCartasViews();
         cartasListener.forEach(cartasL => {
             let Selector = "img[src='" + cartasL.getModel() + "']";
             let Elemento = document.querySelector(Selector);
             Elemento.addEventListener('click', this._onClickCartaMesaHandler.bind({ srcElement: Elemento }));
+            
 
         });
     }
@@ -55,32 +57,31 @@ class JugadorController {
     _onClickCartaManoHandler = ({ srcElement }) => {
         //TODO: Implementar handler del clic (seleccionar carta) sobre una cara de la mano
         let src = srcElement.src.slice(22, 46);
-        let clase = srcElement.className;
+        //let clase = srcElement.className;
         let cartas = [];
         cartas = this.#manoJugadorCartasView.getModelSelection();
-        let cartasMesa=[];
-        cartasMesa= this.#mesaController.getCartasModelsSelected();
-         
-        if (this.#manoJugadorCartasView.isCartaSelected() ) {
-            
-            cartas.forEach(carta => {
-                carta.disableSelection();
-            });
+        let cartasMesa = [];
+        cartasMesa = this.#mesaController.getCartasViews();
+        if (this.#manoJugadorCartasView.isCartaSelected()) {
+
             cartasMesa.forEach(carta => {
                 carta.disableSelection();
             });
 
-            
-        } 
+
+        }
+
         for (let i = 0; i < cartas.length; i++) {
             if (src == cartas[i].getModel()) {
                 // carta.toggleSelectionCarta(this);
                 this.#manoJugadorCartasView.toggleSelectionCarta(cartas[i]);
+            } else {
+                cartas[i].disableSelection();
             }
 
         }
-       
-        
+        this.update();
+
     }
 
     _onClickCartaMesaHandler = ({ srcElement }) => {
@@ -88,7 +89,7 @@ class JugadorController {
         if (this.#manoJugadorCartasView.isCartaSelected()) {
             let src = srcElement.src.slice(22, 46);
             let cartas = [];
-            cartas = this.#mesaController.getCartasModelsSelected();
+            cartas = this.#mesaController.getCartasViews();
             for (let i = 0; i < cartas.length; i++) {
                 if (src == cartas[i].getModel()) {
                     // carta.toggleSelectionCarta(this);
@@ -98,22 +99,68 @@ class JugadorController {
 
             }
         }
+        this.update();
     }
 
 
     _onDoubleClickCartaManoHandler = ({ srcElement }) => {
         //TODO: Implementar handler del doble clic (arrojar carta) sobre una carta de la mano
+        console.log("has hecho dobleclick");
+        let cartas = [];
+       // cartas = this.#manoJugadorCartasView.getModelSelection();
+        let src = srcElement.src.slice(40, 42);
+        let jugador=this.#jugadorModel;
+        let jugadorMano= this.#jugadorModel.miMano;
+        jugadorMano.forEach(carta => {
+            console.log(carta.clave)
+            if(carta.clave==src){
+                jugador.arroja(carta);
+               
+            }
+        });
+
+        let nuevoreparto =  new ManoJugadorCartasView(jugador, this.#manoJugadorCartasView.getPosicionJugador(),this.#manoJugadorCartasView.getVisivilidadJugador());
+        this.#manoJugadorCartasView=nuevoreparto;
+        this._redraw();
+        this._registrarEventosManoJugador();
     }
 
     _redraw() {
         // Redibujar
         // Envía mensaje a las vistas para que se redibujen
+
         this.#manoJugadorCartasView._contruirVistas();
         this.#manoJugadorCartasView.render();
+        
     }
 
     update() {
         //TODO: Método que recibe notficaciones del modelo (patrón observer)
+        console.log("update");
+        let arrayCartas = document.querySelectorAll('.carta-seleccionada');
+        let cartasMesa = [];
+        //cartasMesa = this.#mesaController.getModelSelection();
+
+        let jugador=this.#jugadorModel;
+        let jugadorMano= this.#jugadorModel.miMano;
+        let carta;
+        arrayCartas.forEach(card => {
+            let src = card.src.slice(40, 42);
+             jugadorMano.forEach(c => {
+                if(c.clave==src){
+                
+               carta= c;
+                }
+              });
+            
+        });
+
+       
+        
+        
+       
+          
+           // jugador.juega(carta,cartas);
     }
 
 }

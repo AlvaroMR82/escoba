@@ -46,12 +46,12 @@ export class ManoJugadorCartasView {
      */
     isCartaSelected() {
         //TODO: Implementar
-        let arrayCartas1 = document.querySelectorAll('#mano1, .carta-seleccionada');
+        let arrayCartas1 = document.querySelectorAll('div.mano1, .carta-seleccionada');
         if (arrayCartas1.length == 0) {
             return false;
+        } else {
+            return true;
         }
-        return true;
-        
     }
 
     /**
@@ -72,7 +72,7 @@ export class ManoJugadorCartasView {
     toggleSelectionCarta(laCartaView) {
         //TODO: Implementar
         laCartaView.toggleSelection();
-        return this.isCartaSelected();
+        return this.isCartaSelected()
     }
 
     toogleHideCartas() {
@@ -90,13 +90,25 @@ export class ManoJugadorCartasView {
     render() {
         //TODO; Manipulación del DOM para ubicación de las cartas
         if (this.#posicionJugador == 0) {
+            let manoJugador = document.getElementById("mano2");
+            manoJugador.innerHTML = "";
             this.#cartasViews.forEach(carta => {
                 carta.render("mano2");
             });
         } else if (this.#posicionJugador == 1) {
+            let manoJugador = document.getElementById("mano1");
+            manoJugador.innerHTML = "";
+
             this.#cartasViews.forEach(carta => {
                 carta.render("mano1");
             });
         }
     }
+    getPosicionJugador(){
+        return this.#posicionJugador;
+    }
+    getVisivilidadJugador(){
+        return this.#manoVisible;
+    }
+
 }

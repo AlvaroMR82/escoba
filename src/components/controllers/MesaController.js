@@ -27,11 +27,19 @@ class MesaController {
 
     getCartasModelsSelected() {
         //TODO: Obtiene las cartas (models) de las cartas que han sido seleccionadas 
-        return this.#mesaCartasView.getSelection();
+       // return this.#mesaCartasView.getSelection();
     }
 
     resetSelection() {
         //TODO: Elimina toda seleccion efectuada sobre cartas de la mesa
+        let cartasMesa=[];
+         cartasMesa= this.#mesaCartasView();           
+            cartasMesa.forEach(carta => {
+                carta.disableSelection();
+            });
+
+         
+        
     }
 
     redraw() {
