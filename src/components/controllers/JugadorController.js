@@ -120,12 +120,13 @@ class JugadorController {
                
             }
         });
-
+        this.#manoJugadorCartasView._contruirVistas
         let nuevoreparto =  new ManoJugadorCartasView(jugador, this.#manoJugadorCartasView.getPosicionJugador(),this.#manoJugadorCartasView.getVisivilidadJugador());
         this.#manoJugadorCartasView=nuevoreparto;
         this._redraw();
         this._registrarEventosManoJugador();
-       
+        this.#mesaController.update(this.#mesaController.getScenecontroller());
+        this.#mesaController.redraw();
 
        
        

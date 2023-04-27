@@ -56,6 +56,9 @@ class MesaController {
         this.#mesaCartasView = mcv;
         
     }
+    getScenecontroller(){
+        return this.#sceneController._getJuego();
+    }
 }
 
 export { MesaController }
