@@ -1,0 +1,61 @@
+html, body {
+  background-color: #2F4F30;
+  color: white;
+  margin: 0px;
+}
+
+.titulo {
+  background-color: black;
+  color: white;
+  font-size: 25px;
+  padding: 20px;
+  text-align: center;
+}
+
+#mesa {
+  height: 320px;
+  margin: 20px;
+}
+
+.carta {
+  height: 160px;
+  left: 100px;
+  margin: 5px; 
+}
+
+.carta-en-mano {
+  margin-left: -75px;
+  position: relative;
+}
+
+.carta-en-taco {
+  margin-left: -108px;
+  position: relative;
+}
+
+/* #mano1 .carta-en-mano:hover {
+  border: 1px solid #700;
+  border-radius: 10px;
+} */
+
+.carta-seleccionada {
+  border: 2px solid red;
+  border-radius: 10px;
+}
+
+.rotate-izq {
+  transform: rotate(-15deg);
+}
+
+.rotate-der {
+  transform: rotate(15deg);
+}
+
+#baza1, #baza2, #mano0{
+  background-color: rgba(84, 131, 86, 0.3);
+  border: solid #777;
+  border-radius: 15px;
+  border-style: dashed;
+  height: 160px;
+  width: 110px;
+}
