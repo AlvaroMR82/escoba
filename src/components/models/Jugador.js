@@ -76,6 +76,7 @@ class Jugador {
 
         if (mano.includes(cartaMano)) {
             console.log("tengo la carta");
+        
             cartasMesa.forEach(carta => {
                 if (manoMesa.includes(carta)) {
                     console.log("la mesa contiene la carta");
@@ -87,7 +88,8 @@ class Jugador {
                 }
 
             });
-
+            
+           
         } else {
             console.log("no tengo la carta");
             throw new ReglaException(`No es posible jugar la carta: ${cartaMano.clave}`);

@@ -9,6 +9,7 @@ export class ManoJugadorCartasView {
     #cartasViews = [];
     #manoVisible
     #jugador
+    #cartaSelecionada
 
     /** Indica la posición en la que se situarán la colección de cartas mano de un jugador
      * Deberá ser un número entre 1 y 4 (máximo de jugadores para este diseño)
@@ -46,12 +47,21 @@ export class ManoJugadorCartasView {
      */
     isCartaSelected() {
         //TODO: Implementar
-        let arrayCartas1 = document.querySelectorAll('div.mano1, .carta-seleccionada');
-        if (arrayCartas1.length == 0) {
-            return false;
-        } else {
-            return true;
-        }
+       
+       let seleccion= Boolean;
+       seleccion= false;
+        let arrayCartas1 = document.getElementById('mano1');
+        arrayCartas1 = arrayCartas1.querySelectorAll('img');
+        arrayCartas1.forEach(cm => {
+            if (cm.classList[2]=="carta-seleccionada") {
+                
+                seleccion= true;
+            }
+            
+        });
+       
+        return seleccion;
+
     }
 
     /**
@@ -61,7 +71,16 @@ export class ManoJugadorCartasView {
      */
     getModelSelection() {
         //TODO: Implementar
+        
+        let arrayCartasmano= document.getElementById("mano1");
+        let arraymano = arrayCartasMano.querySelectorAll(' .carta-seleccionada');
+
+    }
+    getModel() {
+       
         return this.#cartasViews;
+        
+
     }
 
     /**
