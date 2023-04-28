@@ -11,7 +11,7 @@ class MesaController {
     constructor(sceneController, juego) {
         //TODO: Construir este controller (puede que haga falta parametrizarlo)
         this.#sceneController = sceneController;
-        this.#juego=juego;
+        this.#juego = juego;
         let mcv = new MesaCartasView(juego.mesa);
         mcv._construirVistas();
         this.#mesaCartasView = mcv;
@@ -54,10 +54,15 @@ class MesaController {
         let mcv = new MesaCartasView(data.mesa);
         mcv._construirVistas();
         this.#mesaCartasView = mcv;
-        
+        this.#juego=data;   
+      
     }
-    getScenecontroller(){
+    getScenecontroller() {
         return this.#sceneController._getJuego();
+    }
+    getScr() {
+        return this.#sceneController;
+
     }
 }
 

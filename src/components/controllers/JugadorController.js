@@ -147,14 +147,20 @@ class JugadorController {
         this.#manoJugadorCartasView = nuevoreparto;
         this._redraw();
         this._registrarEventosManoJugador();
+        this._registrarEventosMesa();
 
     }
     cuentaJuego() {
 
-        let jugador = this.#jugadorModel;
+        //let jugador = this.#jugadorModel;
+        
+        let juego = this.#mesaController.getScenecontroller();
+        let cartasMesaJuego = [];
+        cartasMesaJuego = juego.mesa.mano;
+        let jugador = juego.jugadores[1];
         let jugadorMano = jugador.miMano;
         let cartaMano;
-        let cartasMesa=[];
+        let cartasMesa = [];
         let arrayCartasMesa = document.getElementById('mesa');
         arrayCartasMesa = arrayCartasMesa.querySelectorAll('img');
         let arrayCartasMano = document.getElementById('mano1');
@@ -163,17 +169,17 @@ class JugadorController {
         arrayCartasMesa.forEach(cm => {
 
             if (cm.classList[1] == "carta-seleccionada") {
-
+                
                 arraySuma.push(parseInt(cm.src[41]));
-                jugadorMano.forEach(carta => {
-                    console.log(carta.clave);
-                    console.log(cm.src.slice(40,41));
-                    if(carta.clave == cm.src.slice(40,42)){
+                cartasMesaJuego.forEach(carta => {
+
+                    if (carta.clave == cm.src.slice(40, 42)) {
                         cartasMesa.push(carta);
-                     
+
+
                     }
                 });
-                
+
             }
         });
         arrayCartasMano.forEach(cm => {
@@ -181,11 +187,10 @@ class JugadorController {
 
                 arraySuma.push(parseInt(cm.src[41]));
                 jugadorMano.forEach(carta => {
-                    console.log(carta.clave);
-                    console.log(cm.src.slice(40,41));
-                    if(carta.clave == cm.src.slice(40,42)){
-                        cartaMano= carta;
-                        console.log(cartaMano);
+
+                    if (carta.clave == cm.src.slice(40, 42)) {
+                        cartaMano = carta;
+
                     }
                 });
 
@@ -197,17 +202,20 @@ class JugadorController {
             valorJugada = valorJugada + valor;
         });
 
-        
+        if (valorJugada == 15) {
 
-        console.log(valorJugada + " jugada");
-        if( valorJugada==15){
+            jugador.juega(cartaMano, ...cartasMesa);
 
-            jugador.juega(cartaMano,cartasMesa);
+            this.update(jugador);
+            this.#mesaController.update(juego);
+            this.#mesaController.redraw();
+            this._registrarEventosMesa();
+
+
         }
 
 
 
-       
 
     }
 
