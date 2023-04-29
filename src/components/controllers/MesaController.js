@@ -51,11 +51,12 @@ class MesaController {
 
     update(data) {
         //TODO: Método que recibe notficaciones del modelo (patrón observer)
+        
         let mcv = new MesaCartasView(data.mesa);
-        mcv._construirVistas();
+       
         this.#mesaCartasView = mcv;
         this.#juego=data;   
-      
+        mcv._construirVistas();
     }
     getScenecontroller() {
         return this.#sceneController._getJuego();

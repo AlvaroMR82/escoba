@@ -27,7 +27,7 @@ class JugadorController {
             let Selector = "img[src='" + cartasL.getModel() + "']";
             let Elemento = document.querySelector(Selector);
             Elemento.addEventListener('click', this._onClickCartaManoHandler.bind({ srcElement: Elemento }));
-            Elemento.addEventListener('dblclick', this._onDoubleClickCartaManoHandler.bind({ srcElement: Elemento }));
+            Elemento.addEventListener('dblclick', this._onDoubleClickCartaManoHandler.bind({ srcElement: cartasL }));
 
         });
 
@@ -111,9 +111,10 @@ class JugadorController {
         //TODO: Implementar handler del doble clic (arrojar carta) sobre una carta de la mano
         console.log("has hecho dobleclick");
         let cartas = [];
-        // cartas = this.#manoJugadorCartasView.getModelSelection();
+
+        let juego = this.#mesaController.getScenecontroller();
         let src = srcElement.src.slice(40, 42);
-        let jugador = this.#jugadorModel;
+        let jugador = juego.jugadores[1];
         let jugadorMano = this.#jugadorModel.miMano;
         jugadorMano.forEach(carta => {
             console.log(carta.clave)
@@ -124,6 +125,7 @@ class JugadorController {
         });
 
         this.update(jugador);
+        console.log(this.#mesaController.getScenecontroller());
         this.#mesaController.update(this.#mesaController.getScenecontroller());
         this.#mesaController.redraw();
 
@@ -145,15 +147,16 @@ class JugadorController {
 
         let nuevoreparto = new ManoJugadorCartasView(data, this.#manoJugadorCartasView.getPosicionJugador(), this.#manoJugadorCartasView.getVisivilidadJugador());
         this.#manoJugadorCartasView = nuevoreparto;
+        this.#jugadorModel=data;
         this._redraw();
         this._registrarEventosManoJugador();
         this._registrarEventosMesa();
 
     }
     cuentaJuego() {
-
+        //noocntar las cartas en el view  
         //let jugador = this.#jugadorModel;
-        
+
         let juego = this.#mesaController.getScenecontroller();
         let cartasMesaJuego = [];
         cartasMesaJuego = juego.mesa.mano;
@@ -169,7 +172,7 @@ class JugadorController {
         arrayCartasMesa.forEach(cm => {
 
             if (cm.classList[1] == "carta-seleccionada") {
-                
+
                 arraySuma.push(parseInt(cm.src[41]));
                 cartasMesaJuego.forEach(carta => {
 
@@ -197,22 +200,21 @@ class JugadorController {
             }
         });
 
-        let valorJugada = 0;
-        arraySuma.forEach(valor => {
-            valorJugada = valorJugada + valor;
-        });
 
-        if (valorJugada == 15) {
+        try {
 
             jugador.juega(cartaMano, ...cartasMesa);
-
             this.update(jugador);
             this.#mesaController.update(juego);
             this.#mesaController.redraw();
             this._registrarEventosMesa();
-
-
+        } catch (error) {
+            console.warn(error);
         }
+
+
+
+
 
 
 

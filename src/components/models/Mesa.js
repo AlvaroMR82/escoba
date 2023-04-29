@@ -22,7 +22,9 @@ class Mesa {
     constructor(juego) {
         if (juego && juego instanceof Juego) {
             this.#juego = juego;
-        } else throw new Error('No es posible construir la sin relación a un juego');
+        } else{ 
+        throw new Error('No es posible construir la sin relación a un juego');
+        }
     }
 
     // interfaz
@@ -32,12 +34,24 @@ class Mesa {
      * @returns {Mesa} La instancia de esta mesa
      */
     recogerCartas = (...cartas) => {
-              
+         /*     
         let añadirCartas=[];
         añadirCartas=cartas;
         añadirCartas.concat(this.mano);
         this.#mano=añadirCartas;
        
+        */
+        let mano= this.mano;
+        cartas.forEach(carta => {
+            mano.push(carta);
+            
+        });
+        
+        this.#mano=mano;
+        
+
+
+
         return this;
     }
 

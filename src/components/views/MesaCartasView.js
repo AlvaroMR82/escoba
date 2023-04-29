@@ -20,7 +20,7 @@ class MesaCartasView {
         let mano = [];
         mano = this.#mesaModel.mano;
 
-        if (mano.length != 0) {
+       
             for (let i = 0; i < mano.length; i++) {
                 let selectorCss = "carta";
 
@@ -29,11 +29,8 @@ class MesaCartasView {
                 this.#cartasViews.push(new CartaView(src, true, selectorCss));
 
             }
-        }else{
-            let manoMesa = document.getElementById("mesa");
-        manoMesa.innerHTML = "";
-
-        }
+       
+        
     }
 
     getSelection() {
@@ -43,10 +40,10 @@ class MesaCartasView {
 
     render() {
         //TODO; Manipulación del carta.addEventListener('click',DOM para ubicación de las cartas
-
-        let manoMesa = document.getElementById("mesa");
-        manoMesa.innerHTML = "";
-
+       
+        let manoJugador = document.getElementById("mesa");
+            manoJugador.innerHTML = "";
+        console.log(this.#cartasViews);
         this.#cartasViews.forEach(carta => {
             carta.render("mesa");
         });
