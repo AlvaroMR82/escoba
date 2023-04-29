@@ -124,11 +124,10 @@ class JugadorController {
             }
         });
 
-        this.update(jugador);
-        console.log(this.#mesaController.getScenecontroller());
+        
         this.#mesaController.update(this.#mesaController.getScenecontroller());
         this.#mesaController.redraw();
-
+        this.update(jugador);
 
 
     }
