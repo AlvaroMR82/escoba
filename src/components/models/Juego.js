@@ -1,6 +1,8 @@
 import { Jugador } from './Jugador.js';
 import { Mesa } from './Mesa.js';
 import { BarajaEspagnola } from './BarajaEspagnola.js';
+import _ from 'underscore'
+
 
 class Juego {
 
@@ -29,8 +31,8 @@ class Juego {
     /** Construye un nuevo juego con una nueva Baraja Española
      * @constructor
      */
-    constructor() {
-        this.init();
+    constructor(barajar) {
+        this.init(barajar);
     }
 
     // Interfaz
@@ -38,11 +40,16 @@ class Juego {
     /** Inicializa el juego
      * @returns {Juego} - El juego inicializado
      */
-    init() {
+    init(barajar=false) {
         // Construir baraja y asignarla al mazo
 
         let baraja = new BarajaEspagnola();
         this.#mazo = baraja.cartas;
+        
+        if(barajar){
+           this.#mazo=this.barajar();
+        } 
+        
         // Estableciendo el valor que se pretende de cada carta
         this.estableceValorCartas();
 
@@ -168,6 +175,11 @@ class Juego {
 
         return this;
 
+    }
+  barajar() {
+        let barajada = _.shuffle(this.#mazo);
+    
+        return barajada;
     }
 }
 

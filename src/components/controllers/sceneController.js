@@ -16,16 +16,22 @@ class SceneController {
 
     _registrarEventos = () => {
         // TODO: registrar eventos de botoneras
-        
+        let Elemento = document.getElementById('btn-nuevo-juego');
+        Elemento.addEventListener('click', this._clickHandlerNuevoJuego);
     }
 
     _clickHandlerNuevoJuego = () => {
-        let botonRepartir = document.getElementById("btn-nuevo-juego");
-      // botonRepartir.addEventListener("click",  );
+       
+     
+      console.log("evento de boton");
+      this._creaModelo(true);
+      this._crearEscena();
+      this._registrarEventos();
+            
     }
 
-    _creaModelo = (barajar = false) => {
-        let juego = new Juego();
+    _creaModelo = (barajar) => {
+        let juego = new Juego(barajar);
         juego.repartir();
         this.#juego = juego;
     }
