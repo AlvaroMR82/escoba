@@ -17,6 +17,8 @@ class JugadorController {
         this.#manoJugadorCartasView = jug;
         this.#jugadorModel = jugador;
         this.#mesaController = mesaController;
+        let bcv = new PilaCartasView(this.#jugadorModel.misBazas,"baza1");
+        this.#bazasCartasView=bcv; 
     }
 
     // Events
@@ -138,7 +140,23 @@ class JugadorController {
 
         this.#manoJugadorCartasView._contruirVistas();
         this.#manoJugadorCartasView.render();
+      
+        let bazas=this.#jugadorModel.misBazas;
+        let cartas = [];
+       bazas.forEach(baza => {
+        
+        let cartasBaza=baza.cartasBaza;
+            cartasBaza.forEach(element => {
+                cartas.push(element);
+            });
 
+     
+       });
+        
+        if(this.#jugadorModel.misBazas){
+        let bcv = new PilaCartasView(cartas,"baza1");
+        this.#bazasCartasView=bcv; 
+        }
     }
 
     update(data) {

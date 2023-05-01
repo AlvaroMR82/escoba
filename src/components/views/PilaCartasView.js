@@ -27,6 +27,28 @@ class PilaCartasView {
         });
        
     }
+    render(mazo,elemento){
+        let mano=[];
+        mano = mazo;
+        
+        let manoPila = document.getElementById(elemento);
+        manoPila.innerHTML = "";
+        
+        for (let i = 0; i < mano.length; i++) {
+            let selectorCss="carta-en-taco";
+           
+            let src= "assets/img/cartas/" + mano[i].clave + ".png";
+    
+            this.#cartasViews.push(new CartaView(src,false,selectorCss));
+            
+          }
+          
+          this.#cartasViews.forEach(carta => {
+            carta.render(elemento);
+        });
+       
+
+    }
     
 }
 
