@@ -32,7 +32,7 @@ class CartaView {
         let doc= document.getElementById(elemento);
         doc.append(element);
         this.#element=element;
-
+        this.#element.view=this;
     }
 
     toggleSelection() {

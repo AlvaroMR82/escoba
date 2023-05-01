@@ -1,3 +1,4 @@
+import { forEach } from "underscore";
 import { Carta } from "../models/Carta";
 import { CartaView } from "./CartaView";
 
@@ -50,6 +51,9 @@ export class ManoJugadorCartasView {
        
        let seleccion= Boolean;
        seleccion= false;
+       
+
+
         let arrayCartas1 = document.getElementById('mano1');
         arrayCartas1 = arrayCartas1.querySelectorAll('img');
         arrayCartas1.forEach(cm => {
@@ -122,6 +126,10 @@ export class ManoJugadorCartasView {
                 carta.render("mano1");
             });
         }
+        let arrayCartas2= this.#cartasViews;
+       this.#cartasViews.forEach(carta => {
+            console.log(carta);
+       }); 
     }
     getPosicionJugador(){
         return this.#posicionJugador;
