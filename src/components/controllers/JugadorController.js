@@ -167,18 +167,12 @@ class JugadorController {
         arrayCartasMesa = arrayCartasMesa.querySelectorAll('img');
         let arrayCartasMano = document.getElementById('mano1');
         arrayCartasMano = arrayCartasMano.querySelectorAll('img');
-        let arraySuma = [];
         arrayCartasMesa.forEach(cm => {
-
             if (cm.classList[1] == "carta-seleccionada") {
-
-                arraySuma.push(parseInt(cm.src[41]));
+                
                 cartasMesaJuego.forEach(carta => {
-
                     if (carta.clave == cm.src.slice(40, 42)) {
                         cartasMesa.push(carta);
-
-
                     }
                 });
 
@@ -186,13 +180,10 @@ class JugadorController {
         });
         arrayCartasMano.forEach(cm => {
             if (cm.classList[2] == "carta-seleccionada") {
-
-                arraySuma.push(parseInt(cm.src[41]));
+               
                 jugadorMano.forEach(carta => {
-
                     if (carta.clave == cm.src.slice(40, 42)) {
                         cartaMano = carta;
-
                     }
                 });
 

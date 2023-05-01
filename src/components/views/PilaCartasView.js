@@ -9,6 +9,10 @@ class PilaCartasView {
         //TODO: Construir este vista (puede que haga falta parametrizarlo)
         let mano=[];
         mano = mazo;
+        
+        let manoPila = document.getElementById(elemento);
+        manoPila.innerHTML = "";
+        
         for (let i = 0; i < mano.length; i++) {
             let selectorCss="carta-en-taco";
            

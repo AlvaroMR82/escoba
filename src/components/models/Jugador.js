@@ -147,7 +147,6 @@ class Jugador {
             console.log("tengo la carta");
             let mesa1 = this.#juego.mesa;
             mesa1.recogerCartas(cartaMano);
-            console.log(mesa1);
             let cartaEliminada = this.#mano.findIndex(carta => carta === cartaMano);
             this.#mano.splice(cartaEliminada, 1);
     
