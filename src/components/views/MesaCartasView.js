@@ -19,18 +19,11 @@ class MesaCartasView {
         //TODO: Construir las vistas que agrega
         let mano = [];
         mano = this.#mesaModel.mano;
-
-       
             for (let i = 0; i < mano.length; i++) {
                 let selectorCss = "carta";
-
                 let src = "assets/img/cartas/" + mano[i].clave + ".png";
-
                 this.#cartasViews.push(new CartaView(src, true, selectorCss));
-
             }
-       
-        
     }
 
     getSelection() {
@@ -43,7 +36,6 @@ class MesaCartasView {
        
         let manoJugador = document.getElementById("mesa");
             manoJugador.innerHTML = "";
-        console.log(this.#cartasViews);
         this.#cartasViews.forEach(carta => {
             carta.render("mesa");
         });

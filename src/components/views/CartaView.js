@@ -37,15 +37,20 @@ class CartaView {
 
     toggleSelection() {
         this.#element.classList.toggle(CartaView.CSS_SELECTED_SELECTOR);
+        this.#selectorCss=this.#element.classList;
+        
     }
 
     enableSelection() {
         this.#element.classList.add(CartaView.CSS_SELECTED_SELECTOR);
-
+        this.#selectorCss=this.#element.classList;
+      
     }
 
     disableSelection() {
         this.#element.classList.remove( CartaView.CSS_SELECTED_SELECTOR);
+        this.#selectorCss=this.#element.classList;
+        
     }
     getModel(){
         return this.#model;

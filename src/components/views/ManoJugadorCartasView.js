@@ -30,17 +30,10 @@ export class ManoJugadorCartasView {
         //TODO: Construye la CartaView de la mano de un jugador
         let mano = [];
         mano = this.#jugador.miMano;
-
         for (let i = 0; i < mano.length; i++) {
-
-
             let carta = new CartaView("assets/img/cartas/" + mano[i].clave + ".png", this.#manoVisible, "carta-en-mano");
             this.#cartasViews[i] = carta;
-
         }
-
-
-
     }
 
     /**
@@ -48,22 +41,36 @@ export class ManoJugadorCartasView {
      */
     isCartaSelected() {
         //TODO: Implementar
-       
-       let seleccion= Boolean;
-       seleccion= false;
-       
 
+        let seleccion = Boolean;
+        seleccion = false;
+        let arrayCartas2 = this.#cartasViews;
+        let jugadorMano= this.#jugador.miMano;
 
-        let arrayCartas1 = document.getElementById('mano1');
-        arrayCartas1 = arrayCartas1.querySelectorAll('img');
-        arrayCartas1.forEach(cm => {
-            if (cm.classList[2]=="carta-seleccionada") {
-                
-                seleccion= true;
+        arrayCartas2.forEach(cm => {
+            let css = [];
+            css = cm.getSelectorCss();
+            if (css[2] == "carta-seleccionada") {
+                seleccion = true;
+                jugadorMano.forEach(carta => {
+                    if (carta.clave == cm.getModel().slice(18, 20)) {
+                       this.#cartaSelecionada=carta;
+                    }
+                });
             }
-            
         });
-       
+        /*
+           let arrayCartas1 = document.getElementById('mano1');
+           arrayCartas1 = arrayCartas1.querySelectorAll('img');
+           arrayCartas1.forEach(cm => {
+               if (cm.classList[2]=="carta-seleccionada") {
+                   
+                   seleccion= true;
+               }
+               
+           });
+          */
+         
         return seleccion;
 
     }
@@ -75,15 +82,14 @@ export class ManoJugadorCartasView {
      */
     getModelSelection() {
         //TODO: Implementar
-        
-        let arrayCartasmano= document.getElementById("mano1");
-        let arraymano = arrayCartasMano.querySelectorAll(' .carta-seleccionada');
+
+        return this.#cartaSelecionada;
 
     }
     getModel() {
-       
+
         return this.#cartasViews;
-        
+
 
     }
 
@@ -126,15 +132,11 @@ export class ManoJugadorCartasView {
                 carta.render("mano1");
             });
         }
-        let arrayCartas2= this.#cartasViews;
-       this.#cartasViews.forEach(carta => {
-            console.log(carta);
-       }); 
     }
-    getPosicionJugador(){
+    getPosicionJugador() {
         return this.#posicionJugador;
     }
-    getVisivilidadJugador(){
+    getVisivilidadJugador() {
         return this.#manoVisible;
     }
 

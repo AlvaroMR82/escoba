@@ -17,8 +17,8 @@ class JugadorController {
         this.#manoJugadorCartasView = jug;
         this.#jugadorModel = jugador;
         this.#mesaController = mesaController;
-        let bcv = new PilaCartasView(this.#jugadorModel.misBazas,"baza1");
-        this.#bazasCartasView=bcv; 
+        let bcv = new PilaCartasView(this.#jugadorModel.misBazas, "baza1");
+        this.#bazasCartasView = bcv;
     }
 
     // Events
@@ -29,8 +29,8 @@ class JugadorController {
             let Selector = "img[src='" + cartasL.getModel() + "']";
             let Elemento = document.querySelector(Selector);
             //Elemento.addEventListener('click', this._onClickCartaManoHandler.bind({ srcElement: Elemento }));
-           Elemento.addEventListener('click', this._onClickCartaManoHandler,true);
-           Elemento.addEventListener('dblclick', this._onDoubleClickCartaManoHandler, true);
+            Elemento.addEventListener('click', this._onClickCartaManoHandler, true);
+            Elemento.addEventListener('dblclick', this._onDoubleClickCartaManoHandler, true);
 
         });
 
@@ -51,7 +51,7 @@ class JugadorController {
             let Selector = "img[src='" + cartasL.getModel() + "']";
             let Elemento = document.querySelector(Selector);
             Elemento.addEventListener('click', this._onClickCartaMesaHandler, true);
-         
+
 
         });
     }
@@ -61,12 +61,13 @@ class JugadorController {
     }
 
     _onClickCartaManoHandler = ({ srcElement }) => {
+        //TODO: Implementar handler del clic (seleccionar carta) sobre una cara de la mano
         /*
         console.log("click");
         const cartaView = srcElement.view;
         cartaView.toggleSelection();
         */
-        //TODO: Implementar handler del clic (seleccionar carta) sobre una cara de la mano
+
         let src = srcElement.src.slice(22, 46);
         //let clase = srcElement.className;
         let cartas = [];
@@ -84,8 +85,7 @@ class JugadorController {
 
         for (let i = 0; i < cartas.length; i++) {
             if (src == cartas[i].getModel()) {
-                // carta.toggleSelectionCarta(this);
-                this.#manoJugadorCartasView.toggleSelectionCarta(cartas[i]);
+               this.#manoJugadorCartasView.toggleSelectionCarta(cartas[i]);
             } else {
                 cartas[i].disableSelection();
             }
@@ -93,7 +93,7 @@ class JugadorController {
         }
 
         this.cuentaJuego();
-        
+
     }
 
     _onClickCartaMesaHandler = ({ srcElement }) => {
@@ -101,9 +101,9 @@ class JugadorController {
         let cartaView = srcElement.view;
         if (this.#manoJugadorCartasView.isCartaSelected()) {
             this.#manoJugadorCartasView.toggleSelectionCarta(cartaView);
-            
+
         }
-        
+
         this.cuentaJuego();
 
     }
@@ -113,8 +113,8 @@ class JugadorController {
         //TODO: Implementar handler del doble clic (arrojar carta) sobre una carta de la mano
         console.log("has hecho dobleclick");
         const cartaView = srcElement.view;
-        let src= cartaView.getModel();
-        src = src.slice(18,20)
+        let src = cartaView.getModel();
+        src = src.slice(18, 20)
         let juego = this.#mesaController.getScenecontroller();
         let jugador = juego.jugadores[1];
         let jugadorMano = this.#jugadorModel.miMano;
@@ -125,7 +125,7 @@ class JugadorController {
             }
         });
 
-        
+
         this.#mesaController.update(this.#mesaController.getScenecontroller());
         this.#mesaController.redraw();
         this.update(jugador);
@@ -139,22 +139,22 @@ class JugadorController {
 
         this.#manoJugadorCartasView._contruirVistas();
         this.#manoJugadorCartasView.render();
-      
-        let bazas=this.#jugadorModel.misBazas;
+
+        let bazas = this.#jugadorModel.misBazas;
         let cartas = [];
-       bazas.forEach(baza => {
-        
-        let cartasBaza=baza.cartasBaza;
+        bazas.forEach(baza => {
+
+            let cartasBaza = baza.cartasBaza;
             cartasBaza.forEach(element => {
                 cartas.push(element);
             });
 
-     
-       });
-        
-        if(this.#jugadorModel.misBazas){
-        let bcv = new PilaCartasView(cartas,"baza1");
-        this.#bazasCartasView=bcv; 
+
+        });
+
+        if (this.#jugadorModel.misBazas) {
+            let bcv = new PilaCartasView(cartas, "baza1");
+            this.#bazasCartasView = bcv;
         }
     }
 
@@ -163,7 +163,7 @@ class JugadorController {
 
         let nuevoreparto = new ManoJugadorCartasView(data, this.#manoJugadorCartasView.getPosicionJugador(), this.#manoJugadorCartasView.getVisivilidadJugador());
         this.#manoJugadorCartasView = nuevoreparto;
-        this.#jugadorModel=data;
+        this.#jugadorModel = data;
         this._redraw();
 
         this._registrarEventosManoJugador();
@@ -187,7 +187,7 @@ class JugadorController {
         arrayCartasMano = arrayCartasMano.querySelectorAll('img');
         arrayCartasMesa.forEach(cm => {
             if (cm.classList[1] == "carta-seleccionada") {
-                
+
                 cartasMesaJuego.forEach(carta => {
                     if (carta.clave == cm.src.slice(40, 42)) {
                         cartasMesa.push(carta);
@@ -198,7 +198,7 @@ class JugadorController {
         });
         arrayCartasMano.forEach(cm => {
             if (cm.classList[2] == "carta-seleccionada") {
-               
+
                 jugadorMano.forEach(carta => {
                     if (carta.clave == cm.src.slice(40, 42)) {
                         cartaMano = carta;
