@@ -57,6 +57,7 @@ class MesaController {
         this.#mesaCartasView = mcv;
         this.#juego=data;   
         mcv._construirVistas();
+        this.redraw();
     }
     getScenecontroller() {
         return this.#sceneController._getJuego();

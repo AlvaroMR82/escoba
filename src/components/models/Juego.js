@@ -6,6 +6,8 @@ import _ from 'underscore'
 
 class Juego {
 
+    #observers = [];
+
     // Atributos
 
     /** Representa la colección de cartas que se van a poner en juego (repartir)
@@ -40,16 +42,16 @@ class Juego {
     /** Inicializa el juego
      * @returns {Juego} - El juego inicializado
      */
-    init(barajar=false) {
+    init(barajar = false) {
         // Construir baraja y asignarla al mazo
 
         let baraja = new BarajaEspagnola();
         this.#mazo = baraja.cartas;
-        
-        if(barajar){
-           this.#mazo=this.barajar();
-        } 
-        
+
+        if (barajar) {
+            this.#mazo = this.barajar();
+        }
+
         // Estableciendo el valor que se pretende de cada carta
         this.estableceValorCartas();
 
@@ -117,7 +119,7 @@ class Juego {
 
     }
 */
-    //solucion refactorizada
+        //solucion refactorizada
         let mazo = this.#mazo;
         let mano1 = this.#jugadores[0].miMano;
         let mano2 = this.#jugadores[1].miMano;
@@ -151,7 +153,7 @@ class Juego {
                             carta.valor = 8;
                         } else if (vF == "C") {
                             carta.valor = 9;
-                        } else if (vF == "R") {
+                        } else if (vF == "R") {s
                             carta.valor = 10;
                         }
                     } else {
@@ -176,11 +178,26 @@ class Juego {
         return this;
 
     }
-  barajar() {
+    barajar() {
         let barajada = _.shuffle(this.#mazo);
-    
+
         return barajada;
     }
+    addObserver(observer) {
+        this.#observers.push(observer)
+    }
+    removeObserver(observer) {
+        this.#observers = this.#observers.filter(e => e != 0);
+    }
+
+    notificar(){
+       this.#observers.forEach(observer => {
+        observer.update(this);
+        
+       });
+    }
+
+
 }
 
 export { Juego }

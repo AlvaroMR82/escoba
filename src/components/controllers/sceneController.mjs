@@ -8,7 +8,7 @@ import { MesaController } from './MesaController';
 class SceneController {
 
     #juego;
-
+    #observers=[];
     constructor() {
         //TODO: Construir este controller (puede que haga falta parametrizarlo)
         
@@ -27,8 +27,9 @@ class SceneController {
       this._creaModelo(true);
       this._crearEscena();
       this._registrarEventos();
+      
             
-    }
+    }  
 
     _creaModelo = (barajar) => {
         let juego = new Juego(barajar);
@@ -48,8 +49,13 @@ class SceneController {
         jugador2._redraw();
         jugador2._registrarEventosManoJugador();
         jugador2._registrarEventosMesa();
+
+        this.#juego.addObserver(mesa);
+        //this.#juego.addObserver(jugador1);
+        this.#juego.addObserver(jugador2);
         
     }
+    
     _getJuego(){
         return this.#juego;
     }

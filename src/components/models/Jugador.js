@@ -120,11 +120,12 @@ class Jugador {
             //eliminamos las cartas de la mano
             let cartaEliminada = this.#mano.findIndex(carta => carta === cartaMano);
             this.#mano.splice(cartaEliminada, 1);
+            this.#juego.notificar();
             return { cartasBaza, escoba };
 
         }
 
-
+        
         return { cartasBaza, escoba };
         
 
@@ -149,7 +150,7 @@ class Jugador {
             mesa1.recogerCartas(cartaMano);
             let cartaEliminada = this.#mano.findIndex(carta => carta === cartaMano);
             this.#mano.splice(cartaEliminada, 1);
-    
+            this.#juego.notificar();
 
 
          } else {
@@ -158,7 +159,7 @@ class Jugador {
         }
 
 
-
+        
         return this;
 
 

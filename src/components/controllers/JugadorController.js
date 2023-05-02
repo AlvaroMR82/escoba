@@ -126,9 +126,9 @@ class JugadorController {
         });
 
 
-        this.#mesaController.update(this.#mesaController.getScenecontroller());
-        this.#mesaController.redraw();
-        this.update(jugador);
+       // this.#mesaController.update(this.#mesaController.getScenecontroller());
+       // this.#mesaController.redraw();
+       // this.update(jugador);
 
 
     }
@@ -161,11 +161,11 @@ class JugadorController {
     update(data) {
         //TODO: Método que recibe notficaciones del modelo (patrón observer)
 
-        let nuevoreparto = new ManoJugadorCartasView(data, this.#manoJugadorCartasView.getPosicionJugador(), this.#manoJugadorCartasView.getVisivilidadJugador());
+        let nuevoreparto = new ManoJugadorCartasView(data.jugadores[1], this.#manoJugadorCartasView.getPosicionJugador(), this.#manoJugadorCartasView.getVisivilidadJugador());
         this.#manoJugadorCartasView = nuevoreparto;
-        this.#jugadorModel = data;
+        this.#jugadorModel = data.jugadores[1];
         this._redraw();
-
+        this.#mesaController.redraw();
         this._registrarEventosManoJugador();
         this._registrarEventosMesa();
 
@@ -212,10 +212,11 @@ class JugadorController {
         try {
 
             jugador.juega(cartaMano, ...cartasMesa);
-            this.update(jugador);
-            this.#mesaController.update(juego);
-            this.#mesaController.redraw();
-            this._registrarEventosMesa();
+
+            //this.update(jugador);
+            //this.#mesaController.update(juego);
+           // this.#mesaController.redraw();
+           // this._registrarEventosMesa();
         } catch (error) {
             console.warn(error);
         }

@@ -139,5 +139,6 @@ export class ManoJugadorCartasView {
     getVisivilidadJugador() {
         return this.#manoVisible;
     }
+    
 
 }
