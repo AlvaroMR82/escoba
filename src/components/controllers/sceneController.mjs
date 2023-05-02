@@ -53,7 +53,7 @@ class SceneController {
         this.#juego.addObserver(mesa);
         //this.#juego.addObserver(jugador1);
         this.#juego.addObserver(jugador2);
-        
+        //
     }
     
     _getJuego(){
