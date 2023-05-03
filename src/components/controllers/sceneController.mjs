@@ -48,7 +48,7 @@ class SceneController {
         jugador1._redraw();
         jugador2._redraw();
         jugador2._registrarEventosManoJugador();
-        jugador2._registrarEventosMesa();
+        //jugador2._registrarEventosMesa();
 
         this.#juego.addObserver(mesa);
         //this.#juego.addObserver(jugador1);

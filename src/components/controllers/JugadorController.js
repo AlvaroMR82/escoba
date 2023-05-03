@@ -40,10 +40,19 @@ class JugadorController {
 
     _desRegistrarEventosManoJugador() {
         // TODO: des-registrar eventos cartas mano
+        let cartasListener = [];
+        cartasListener = this.#manoJugadorCartasView.getModel();
+        cartasListener.forEach(cartasL => {
+            let Selector = "img[src='" + cartasL.getModel() + "']";
+            let Elemento = document.querySelector(Selector);
+            //Elemento.addEventListener('click', this._onClickCartaManoHandler.bind({ srcElement: Elemento }));
+            Elemento.removeEventListener('click', this._onClickCartaManoHandler, true);
+            Elemento.removeEventListener('dblclick', this._onDoubleClickCartaManoHandler, true);
+        });
     }
 
     _registrarEventosMesa() {
-        this.redraw;
+       
         // TODO: registrar eventos cartas mesa
         let cartasListener = [];
         cartasListener = this.#mesaController.getCartasViews();
@@ -58,6 +67,15 @@ class JugadorController {
 
     _desRegistrarEventosMesa() {
         // TODO: des-registrar eventos cartas mesa
+        let cartasListener = [];
+        cartasListener = this.#mesaController.getCartasViews();
+        cartasListener.forEach(cartasL => {
+            let Selector = "img[src='" + cartasL.getModel() + "']";
+            let Elemento = document.querySelector(Selector);
+            Elemento.removeEventListener('click', this._onClickCartaMesaHandler, true);
+
+
+        });
     }
 
     _onClickCartaManoHandler = ({ srcElement }) => {
@@ -85,14 +103,23 @@ class JugadorController {
 
         for (let i = 0; i < cartas.length; i++) {
             if (src == cartas[i].getModel()) {
-               this.#manoJugadorCartasView.toggleSelectionCarta(cartas[i]);
+                this.#manoJugadorCartasView.toggleSelectionCarta(cartas[i]);
+                
+
             } else {
                 cartas[i].disableSelection();
+
             }
 
         }
 
         this.cuentaJuego();
+        if (this.#manoJugadorCartasView.isCartaSelected()) {
+            this._registrarEventosMesa();
+
+        }else{
+            this._desRegistrarEventosMesa();
+        }
 
     }
 
@@ -115,8 +142,7 @@ class JugadorController {
         const cartaView = srcElement.view;
         let src = cartaView.getModel();
         src = src.slice(18, 20)
-        let juego = this.#mesaController.getScenecontroller();
-        let jugador = juego.jugadores[1];
+        let jugador = this.#jugadorModel;
         let jugadorMano = this.#jugadorModel.miMano;
         jugadorMano.forEach(carta => {
             if (carta.clave == src) {
@@ -126,9 +152,9 @@ class JugadorController {
         });
 
 
-       // this.#mesaController.update(this.#mesaController.getScenecontroller());
-       // this.#mesaController.redraw();
-       // this.update(jugador);
+        // this.#mesaController.update(this.#mesaController.getScenecontroller());
+        // this.#mesaController.redraw();
+        // this.update(jugador);
 
 
     }
@@ -148,10 +174,7 @@ class JugadorController {
             cartasBaza.forEach(element => {
                 cartas.push(element);
             });
-
-
         });
-
         if (this.#jugadorModel.misBazas) {
             let bcv = new PilaCartasView(cartas, "baza1");
             this.#bazasCartasView = bcv;
@@ -167,7 +190,7 @@ class JugadorController {
         this._redraw();
         this.#mesaController.redraw();
         this._registrarEventosManoJugador();
-        this._registrarEventosMesa();
+     
 
     }
     cuentaJuego() {
@@ -215,8 +238,8 @@ class JugadorController {
 
             //this.update(jugador);
             //this.#mesaController.update(juego);
-           // this.#mesaController.redraw();
-           // this._registrarEventosMesa();
+            // this.#mesaController.redraw();
+            // this._registrarEventosMesa();
         } catch (error) {
             console.warn(error);
         }
