@@ -1,3 +1,5 @@
+import { forEach } from "underscore";
+import { CartaView } from "../views/CartaView";
 import { MesaCartasView } from "../views/MesaCartasView";
 import { PilaCartasView } from "../views/PilaCartasView"
 
@@ -29,7 +31,20 @@ class MesaController {
 
     getCartasModelsSelected() {
         //TODO: Obtiene las cartas (models) de las cartas que han sido seleccionadas 
-        // return this.#mesaCartasView.getSelection();
+            let manoModelSeleccionda=[];
+            let manoMesa = this.#juego.mesa.mano;
+            this.#mesaCartasView.getSelection().forEach(CartaView => {
+                if(CartaView.getSelectorCss()[1] == "carta-seleccionada"){
+                    manoMesa.forEach(carta => {
+                        if(carta.clave == CartaView.getModel().slice(18,20)){
+                            manoModelSeleccionda.push(carta);
+                           
+                        }
+                    });
+                }
+            });
+            return manoModelSeleccionda;
+           
     }
 
     resetSelection() {

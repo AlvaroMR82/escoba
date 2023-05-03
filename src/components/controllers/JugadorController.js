@@ -93,25 +93,19 @@ class JugadorController {
         let cartasMesa = [];
         cartasMesa = this.#mesaController.getCartasViews();
         if (this.#manoJugadorCartasView.isCartaSelected()) {
-
             cartasMesa.forEach(carta => {
                 carta.disableSelection();
             });
-
-
         }
 
         for (let i = 0; i < cartas.length; i++) {
             if (src == cartas[i].getModel()) {
                 this.#manoJugadorCartasView.toggleSelectionCarta(cartas[i]);
-                
-
             } else {
                 cartas[i].disableSelection();
-
             }
-
         }
+        
 
         this.cuentaJuego();
         if (this.#manoJugadorCartasView.isCartaSelected()) {
@@ -128,11 +122,9 @@ class JugadorController {
         let cartaView = srcElement.view;
         if (this.#manoJugadorCartasView.isCartaSelected()) {
             this.#manoJugadorCartasView.toggleSelectionCarta(cartaView);
-
         }
-
         this.cuentaJuego();
-
+        
     }
 
 
@@ -196,7 +188,7 @@ class JugadorController {
     cuentaJuego() {
         //no contar las cartas en el view  
         //let jugador = this.#jugadorModel;
-
+        /*
         let juego = this.#mesaController.getScenecontroller();
         let cartasMesaJuego = [];
         cartasMesaJuego = juego.mesa.mano;
@@ -221,7 +213,6 @@ class JugadorController {
         });
         arrayCartasMano.forEach(cm => {
             if (cm.classList[2] == "carta-seleccionada") {
-
                 jugadorMano.forEach(carta => {
                     if (carta.clave == cm.src.slice(40, 42)) {
                         cartaMano = carta;
@@ -230,18 +221,17 @@ class JugadorController {
 
             }
         });
-
+*/
 
         try {
-
+            let jugador = this.#jugadorModel;
+            let cartaMano = this.#manoJugadorCartasView.getModelSelection();
+            let cartasMesa = this.#mesaController.getCartasModelsSelected();
             jugador.juega(cartaMano, ...cartasMesa);
 
-            //this.update(jugador);
-            //this.#mesaController.update(juego);
-            // this.#mesaController.redraw();
-            // this._registrarEventosMesa();
         } catch (error) {
             console.warn(error);
+            this._registrarEventosManoJugador();
         }
 
 
