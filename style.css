@@ -50,3 +50,15 @@ html, body {
 .rotate-der {
   transform: rotate(15deg);
 }
+
+#baza1, #baza2 ,#mano0{
+
+  height: 175px;
+  width: 125px;
+  border: solid #777;
+  border-radius: 15px;
+  border-style: dashed;
+  background-color: rgba(84, 131, 86, 0.3);
+  padding-left: 12px;
+  padding-bottom: 20px;
+}
