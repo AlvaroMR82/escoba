@@ -49,9 +49,7 @@ class MesaController {
 
     resetSelection() {
         //TODO: Elimina toda seleccion efectuada sobre cartas de la mesa
-        let cartasMesa = [];
-        cartasMesa = this.#mesaCartasView();
-        cartasMesa.forEach(carta => {
+        this.#mesaCartasView.getSelection().forEach(carta => {
             carta.disableSelection();
         });
 

@@ -28,7 +28,6 @@ class JugadorController {
         cartasListener.forEach(cartasL => {
             let Selector = "img[src='" + cartasL.getModel() + "']";
             let Elemento = document.querySelector(Selector);
-            //Elemento.addEventListener('click', this._onClickCartaManoHandler.bind({ srcElement: Elemento }));
             Elemento.addEventListener('click', this._onClickCartaManoHandler, true);
             Elemento.addEventListener('dblclick', this._onDoubleClickCartaManoHandler, true);
 
@@ -45,9 +44,8 @@ class JugadorController {
         cartasListener.forEach(cartasL => {
             let Selector = "img[src='" + cartasL.getModel() + "']";
             let Elemento = document.querySelector(Selector);
-            //Elemento.addEventListener('click', this._onClickCartaManoHandler.bind({ srcElement: Elemento }));
-            Elemento.removeEventListener('click', this._onClickCartaManoHandler, true);
-            Elemento.removeEventListener('dblclick', this._onDoubleClickCartaManoHandler, true);
+            Elemento.removeEventListener('click', this._onClickCartaManoHandler);
+            Elemento.removeEventListener('dblclick', this._onDoubleClickCartaManoHandler);
         });
     }
 
@@ -80,32 +78,16 @@ class JugadorController {
 
     _onClickCartaManoHandler = ({ srcElement }) => {
         //TODO: Implementar handler del clic (seleccionar carta) sobre una cara de la mano
-        /*
-        console.log("click");
-        const cartaView = srcElement.view;
-        cartaView.toggleSelection();
-        */
+        this.#mesaController.resetSelection();
+        srcElement.view.toggleSelection();
 
-        let src = srcElement.src.slice(22, 46);
-        //let clase = srcElement.className;
-        let cartas = [];
-        cartas = this.#manoJugadorCartasView.getModel();
-        let cartasMesa = [];
-        cartasMesa = this.#mesaController.getCartasViews();
         if (this.#manoJugadorCartasView.isCartaSelected()) {
-            cartasMesa.forEach(carta => {
-                carta.disableSelection();
-            });
+           this.#mesaController.resetSelection();
+           this.#manoJugadorCartasView.getModel().forEach(carta => {
+            carta.disableSelection();
+        });
+          srcElement.view.toggleSelection();
         }
-
-        for (let i = 0; i < cartas.length; i++) {
-            if (src == cartas[i].getModel()) {
-                this.#manoJugadorCartasView.toggleSelectionCarta(cartas[i]);
-            } else {
-                cartas[i].disableSelection();
-            }
-        }
-        
 
         this.cuentaJuego();
         if (this.#manoJugadorCartasView.isCartaSelected()) {
@@ -142,12 +124,6 @@ class JugadorController {
 
             }
         });
-
-
-        // this.#mesaController.update(this.#mesaController.getScenecontroller());
-        // this.#mesaController.redraw();
-        // this.update(jugador);
-
 
     }
 
@@ -186,42 +162,6 @@ class JugadorController {
 
     }
     cuentaJuego() {
-        //no contar las cartas en el view  
-        //let jugador = this.#jugadorModel;
-        /*
-        let juego = this.#mesaController.getScenecontroller();
-        let cartasMesaJuego = [];
-        cartasMesaJuego = juego.mesa.mano;
-        let jugador = juego.jugadores[1];
-        let jugadorMano = jugador.miMano;
-        let cartaMano;
-        let cartasMesa = [];
-        let arrayCartasMesa = document.getElementById('mesa');
-        arrayCartasMesa = arrayCartasMesa.querySelectorAll('img');
-        let arrayCartasMano = document.getElementById('mano1');
-        arrayCartasMano = arrayCartasMano.querySelectorAll('img');
-        arrayCartasMesa.forEach(cm => {
-            if (cm.classList[1] == "carta-seleccionada") {
-
-                cartasMesaJuego.forEach(carta => {
-                    if (carta.clave == cm.src.slice(40, 42)) {
-                        cartasMesa.push(carta);
-                    }
-                });
-
-            }
-        });
-        arrayCartasMano.forEach(cm => {
-            if (cm.classList[2] == "carta-seleccionada") {
-                jugadorMano.forEach(carta => {
-                    if (carta.clave == cm.src.slice(40, 42)) {
-                        cartaMano = carta;
-                    }
-                });
-
-            }
-        });
-*/
 
         try {
             let jugador = this.#jugadorModel;
