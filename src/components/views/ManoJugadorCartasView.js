@@ -59,17 +59,6 @@ export class ManoJugadorCartasView {
                 });
             }
         });
-        /*
-           let arrayCartas1 = document.getElementById('mano1');
-           arrayCartas1 = arrayCartas1.querySelectorAll('img');
-           arrayCartas1.forEach(cm => {
-               if (cm.classList[2]=="carta-seleccionada") {
-                   
-                   seleccion= true;
-               }
-               
-           });
-          */
          
         return seleccion;
 
