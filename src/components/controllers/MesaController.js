@@ -66,6 +66,8 @@ class MesaController {
         //TODO: Método que recibe notficaciones del modelo (patrón observer)
         
         let mcv = new MesaCartasView(data.mesa);
+        let mazo = new PilaCartasView(data.mazo, "mano0");
+        this.#mesaTacoView = mazo;
        
         this.#mesaCartasView = mcv;
         this.#juego=data;   

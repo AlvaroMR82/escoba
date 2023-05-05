@@ -120,12 +120,16 @@ class Jugador {
             //eliminamos las cartas de la mano
             let cartaEliminada = this.#mano.findIndex(carta => carta === cartaMano);
             this.#mano.splice(cartaEliminada, 1);
+            if(this.#mano==0){
+                console.log("mano Vacia");
+                this.#juego.repartirManos();
+            }
             this.#juego.notificar();
             return { cartasBaza, escoba };
 
         }
 
-        
+       
         return { cartasBaza, escoba };
         
 
@@ -150,9 +154,13 @@ class Jugador {
             mesa1.recogerCartas(cartaMano);
             let cartaEliminada = this.#mano.findIndex(carta => carta === cartaMano);
             this.#mano.splice(cartaEliminada, 1);
+            if(this.#mano==0){
+                console.log("mano Vacia");
+                this.#juego.repartirManos();
+            }
             this.#juego.notificar();
 
-
+           
          } else {
            
               throw new ReglaException(`No es posible arrojar la carta: ${cartaMano.clave}`);

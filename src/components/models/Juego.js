@@ -196,6 +196,22 @@ class Juego {
         
        });
     }
+    repartirManos = () => {
+
+        
+        //solucion refactorizada
+        let mazo = this.#mazo;
+        let mano1 = this.#jugadores[0].miMano;
+        let mano2 = this.#jugadores[1].miMano;
+       
+
+        for (let i = 0; i <= 2; i++) {
+            mano1.push(mazo.pop());
+            mano2.push(mazo.pop());
+        }
+        
+        return this;
+    }
 
 
 }
