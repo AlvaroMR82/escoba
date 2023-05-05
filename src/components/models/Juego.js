@@ -200,10 +200,10 @@ class Juego {
        console.log(this.turno);
     }
     repartirManos = () => {
-
-        
-        //solucion refactorizada
         let mazo = this.#mazo;
+        
+       if(this.#mazo.length!=0){
+       
         let mano1 = this.#jugadores[0].miMano;
         let mano2 = this.#jugadores[1].miMano;
        
@@ -212,7 +212,7 @@ class Juego {
             mano1.push(mazo.pop());
             mano2.push(mazo.pop());
         }
-        
+    }
         return this;
     }
 
