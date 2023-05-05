@@ -120,10 +120,11 @@ class Jugador {
             //eliminamos las cartas de la mano
             let cartaEliminada = this.#mano.findIndex(carta => carta === cartaMano);
             this.#mano.splice(cartaEliminada, 1);
-            if(this.#mano==0){
+            if(this.#juego.jugadores[0].miMano==0 && this.#juego.jugadores[0].miMano==0){
                 console.log("mano Vacia");
                 this.#juego.repartirManos();
             }
+            this.#juego.turno++;
             this.#juego.notificar();
             return { cartasBaza, escoba };
 
@@ -154,10 +155,11 @@ class Jugador {
             mesa1.recogerCartas(cartaMano);
             let cartaEliminada = this.#mano.findIndex(carta => carta === cartaMano);
             this.#mano.splice(cartaEliminada, 1);
-            if(this.#mano==0){
+            if(this.#juego.jugadores[0].miMano==0 && this.#juego.jugadores[0].miMano==0){
                 console.log("mano Vacia");
                 this.#juego.repartirManos();
             }
+            this.#juego.turno++;
             this.#juego.notificar();
 
            

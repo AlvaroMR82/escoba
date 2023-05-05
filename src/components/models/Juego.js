@@ -25,6 +25,8 @@ class Juego {
      */
     #mesa = null;
 
+    turno=0;
+
     // Getters y Setters
     get mazo() { return this.#mazo }
     get jugadores() { return this.#jugadores }
@@ -35,6 +37,7 @@ class Juego {
      */
     constructor(barajar) {
         this.init(barajar);
+        this.turno=0;
     }
 
     // Interfaz
@@ -193,8 +196,8 @@ class Juego {
     notificar(){
        this.#observers.forEach(observer => {
         observer.update(this);
-        
        });
+       console.log(this.turno);
     }
     repartirManos = () => {
 

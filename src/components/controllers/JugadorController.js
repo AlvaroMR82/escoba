@@ -144,21 +144,48 @@ class JugadorController {
             });
         });
         if (this.#jugadorModel.misBazas) {
-            let bcv = new PilaCartasView(cartas, "baza1");
+           
+            let baza = "";
+            if(this.#manoJugadorCartasView.getPosicionJugador()==0){
+                baza="baza2"
+            } else if( this.#manoJugadorCartasView.getPosicionJugador()==1){
+                baza="baza1"
+            }
+            let bcv = new PilaCartasView(cartas, baza);
             this.#bazasCartasView = bcv;
         }
     }
 
     update(data) {
         //TODO: Método que recibe notficaciones del modelo (patrón observer)
+        console.log(data.turno)
+        let visible=Boolean;
+        if(this.#manoJugadorCartasView.getPosicionJugador()==0){
+            
+            if(data.turno%2 == 0){
+                visible=false;
+            }else{
+                visible= true;
+            }
+        }
+        if(this.#manoJugadorCartasView.getPosicionJugador()==1){
+            if(data.turno%2 == 0){
+                visible= true;
+            }else{
+                visible=false;
+            }
 
-        let nuevoreparto = new ManoJugadorCartasView(data.jugadores[1], this.#manoJugadorCartasView.getPosicionJugador(), this.#manoJugadorCartasView.getVisivilidadJugador());
+        }
+
+        let nuevoreparto = new ManoJugadorCartasView(data.jugadores[this.#manoJugadorCartasView.getPosicionJugador()], 
+        this.#manoJugadorCartasView.getPosicionJugador(),visible);
         this.#manoJugadorCartasView = nuevoreparto;
-        this.#jugadorModel = data.jugadores[1];
+        this.#jugadorModel = data.jugadores[this.#manoJugadorCartasView.getPosicionJugador()];
         this._redraw();
         this.#mesaController.redraw();
+        if(visible){
         this._registrarEventosManoJugador();
-     
+        }
 
     }
     cuentaJuego() {
@@ -173,13 +200,6 @@ class JugadorController {
             console.warn(error);
             this._registrarEventosManoJugador();
         }
-
-
-
-
-
-
-
 
     }
 
