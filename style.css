@@ -62,7 +62,7 @@ html, body {
   padding-left: 12px;
   padding-bottom: 20px;
 }
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   img {
   max-width: 100px;
   max-height: 100px;
@@ -71,7 +71,7 @@ html, body {
 
     height: 115px;
     width: 90px;
-    padding-bottom: 10px;
+    
     
   }
   .carta-en-taco {
