@@ -1,0 +1,49 @@
+stages:
+  - test
+  - build
+  - deploy
+
+image: node:latest
+
+cache:
+  paths:
+    - node_modules/
+
+before_script:
+  - npm install
+
+test:
+  stage: test
+  script:
+    - git fetch --tags
+    - echo "Estas son las versiones de test disponibles..."
+    - git tag --list "release/test/v*"
+    - TESTS_VERSION=$(node -p "require('./package.json').config.test_version")
+    - echo "Test version - ${TESTS_VERSION}"
+    - echo "Obteniendo $TESTS_VERSION versión de los test..."
+    - git checkout release/test/$TESTS_VERSION -- src/test
+    - echo "Ejecutando los tests ($TESTS_VERSION)..."
+    - npm run test
+  allow_failure: true
+  only:
+  - /^.*\/develop$/
+
+build:
+  stage: build
+  script:
+    - npm run build -- --base=/$CI_PROJECT_NAME/
+  artifacts:
+    paths:
+      - "dist"
+  only:
+    - /^.*\/develop$/
+
+pages:
+  stage: deploy
+  script:
+    - cp -r dist/* public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - /^.*\/develop$/

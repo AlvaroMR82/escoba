@@ -10,6 +10,7 @@ Recuerda hacer push de tu rama *release branch* (rb-usuario) y también de las t
 - [4. Hito 4: Modelado y diseño del juego de la escoba con orientación a objetos `release/nombreApellido/v0.4.0`](#4-hito-4-modelado-y-diseño-del-juego-de-la-escoba-con-orientación-a-objetos-releasenombreapellidov040)
 - [5. Hito: Utilizando un bundler para el desarrollo del front. Vite como frontend tool frente a alternativas como Webpack y Turbopack `release/nombreApellido/v0.5.0`](#5-hito-utilizando-un-bundler-para-el-desarrollo-del-front-vite-como-frontend-tool-frente-a-alternativas-como-webpack-y-turbopack-releasenombreapellidov050)
 - [6. Hito: De acuerdo al patrón arquitectónico MVC (Model-View-Controller), y teniendo desarrollada parte de la lógica del juego (en el Model), se implementarán los componestes *Views* y *Controllers* `release/nombreApellido/v0.6.0`](#6-hito-de-acuerdo-al-patrón-arquitectónico-mvc-model-view-controller-y-teniendo-desarrollada-parte-de-la-lógica-del-juego-en-el-model-se-implementarán-los-componestes-views-y-controllers-releasenombreapellidov060)
+- [7. Hito: Juegan 2 jugadores y se reparten nuevas bazas cuando se quedan sin cartas `release/nombreApellido/v0.7.0`](#7-hito-juegan-2-jugadores-y-se-reparten-nuevas-bazas-cuando-se-quedan-sin-cartas-releasenombreapellidov070)
 
 ## 1. Hito: Construye una baraja y represéntala en un tapete - `release/nombreApellido/v0.1.0`
 
@@ -161,3 +162,27 @@ Ten además en cuenta lo siguiente:
 2. Es importante que respetes las relaciones del patrón. El Modelo nunca importará ninguna clase de Vista o Controlador. La Vista tampoco importará Controlador.
 
 3. Te convendrá y mucho emplear el [Patrón de Diseño *Observer*](https://es.wikipedia.org/wiki/Observer_(patrón_de_diseño)) por si el Modelo tiene que comunicar algo al resto de componentes. Daremos más información al respecto y explicaremos este patrón.
+
+## 7. Hito: Juegan 2 jugadores y se reparten nuevas bazas cuando se quedan sin cartas `release/nombreApellido/v0.7.0`
+
+![Gift animado Demo Hito 7](./img/07-juegan-2-jugadores.gif)
+
+1. Seguiremos respetando el MVC como en el hito anterior.
+2. El primer jugador juega su carta (ganando baza o no).
+3. Las cartas del jugador que acaba de jugar su carta se ocultan (aparecen volteadas) mientras que se muestran las cartas del segundo jugador.
+4. El usuario podrá interactuar con las cartas del segundo jugador tal y como lo ha hecho anteriormente con el primero.
+5. Cuando juega su carta el segundo jugador se vuelve altenar al primero tal y como se ha hecho anteriormente.
+6. Se repite la dinámica hasta que los jugadores se queden sin cartas. Cuando esto sucede, en el juego se reparten automáticamente otras 3 cartas por cada jugador.
+7. Todo la dinámica se repite hasta que el mazo de cartas se queda sin cartas que repartir.
+8. En la última baza ganada por el jugador que arroja su última, **las cartas que no han sido ganadas permanecerán sobre la mesa** (esta circunstancia cambiará en un próximo hito).
+
+**Queda fuera del alcance de este hito**:
+
+1. Que la computadora juegue por sí misma.
+2. Representar visualmente que un jugador ha ganado una escoba.
+3. Realizar el conteo de puntos.
+
+**Pistas**:
+
+1. El componente `Model`, se responsabiliza de mantener el estado del juego y de que se cumplan sus reglas. La alternancia de un jugador y otro, o dicho de otro modo, saber a qué jugador tiene el turno para poder jugar, es una lógica que debes implementar en este componente `Model`.
+2. Debes por tanto **seguir evolucionando el modelo**.
