@@ -62,3 +62,25 @@ html, body {
   padding-left: 12px;
   padding-bottom: 20px;
 }
+@media (max-width: 600px) {
+  img {
+  max-width: 100px;
+  max-height: 100px;
+  }
+  #baza1, #baza2 ,#mano0{
+
+    height: 115px;
+    width: 90px;
+    padding-bottom: 10px;
+    
+  }
+  .carta-en-taco {
+    margin-left: -69px;
+    position: relative;
+  }
+  .carta-en-mano {
+    margin-left: -50px;
+    position: relative;
+  }
+  
+}
