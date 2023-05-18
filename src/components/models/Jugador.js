@@ -217,12 +217,14 @@ class Jugador {
         // conteo de escobas
         let puntos = 0;
         let bazas = this.misBazas;
-        
+        let escobas = 0;
         bazas.forEach(baza => {
             if(baza.escoba==true){
                 puntos++;
+                escobas++;
             }
         });
+        console.log("tienes "+ escobas+" escobas");
         
         //conteo de cartas
         let cartas=0;

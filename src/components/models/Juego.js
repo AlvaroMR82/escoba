@@ -189,24 +189,28 @@ class Juego {
         return this;
 
     }
+    //el juego baraja el mazo
     barajar() {
         let barajada = _.shuffle(this.#mazo);
 
         return barajada;
     }
+    //Se añaden observadores
     addObserver(observer) {
         this.#observers.push(observer)
     }
+     //Se quitan observadores
     removeObserver(observer) {
         this.#observers = this.#observers.filter(e => e != 0);
     }
-
+     //Se notifican los cambios a los observadores
     notificar() {
         this.#observers.forEach(observer => {
             observer.update(this);
         });
         console.log(this.turno);
     }
+
     repartirManos = () => {
         let mazo = this.#mazo;
 
@@ -223,17 +227,18 @@ class Juego {
         }
         return this;
     }
-
+//se memoriza quien es el ultimo jugador en coger una baza
     ultimoJugador(jugador) {
         this.#ultimoJugador = jugador;
 
     }
-
+//cuando es la ulima jugada el jugador que se llevo la ultima baza recoge las cartas de la mesa
     ultimaJugada() {
         if (this.#ultimoJugador != null && this.#ultimoJugador != undefined) {
             this.#ultimoJugador.ultimaMano();
         }
     }
+//cada jugador cuenta sus puntos se da la partida por terminada y se lo comunica a los observadores.    
     contartPuntos() {
 
         this.#puntosJ1 = this.#jugadores[0].contarMisPuntos();
