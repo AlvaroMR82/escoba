@@ -25,6 +25,8 @@ class Juego {
      */
     #mesa = null;
 
+    #ultimoJugador;
+
     turno=0;
 
     // Getters y Setters
@@ -215,6 +217,17 @@ class Juego {
     }
         return this;
     }
+
+ultimoJugador(jugador){
+    this.#ultimoJugador=jugador;
+    
+}
+
+ultimaJugada(){
+    if(this.#ultimoJugador!=null && this.#ultimoJugador!=undefined){
+        this.#ultimoJugador.ultimaMano();
+        }
+}
 
 
 }

@@ -126,6 +126,8 @@ class Jugador {
             }
             this.#juego.turno++;
             this.#juego.notificar();
+            this.#juego.ultimoJugador(this);
+            this.#juego.ultimaJugada();
             return { cartasBaza, escoba };
 
         }
@@ -161,7 +163,7 @@ class Jugador {
             }
             this.#juego.turno++;
             this.#juego.notificar();
-
+            this.#juego.ultimaJugada();
            
          } else {
            
@@ -177,6 +179,35 @@ class Jugador {
 
     // privados
 
+    ultimaMano(){
+        console.log(this.#juego.mesa.mano);
+        console.log(this.#juego.mazo.length);
+        if(this.#juego.mazo.length == 0 ){
+            if(this.#juego.jugadores[0].miMano.length == 0){
+                if(this.#juego.jugadores[1].miMano.length == 0){
+                    let cartasBaza=[];
+                    let escoba = Boolean;
+                    escoba= false;
+                    
+                    this.#juego.mesa.mano.forEach(carta => {
+                        
+                        cartasBaza.push(carta);
+                    });
+                    this.#bazas.push({ cartasBaza,escoba })
+                    this.#juego.mesa.mano.forEach(carta => {
+                        let cartaParaQitar = carta;
+                        let cartaEliminada = this.#juego.mesa.mano.findIndex(carta => carta === cartaParaQitar);
+                        this.#juego.mesa.mano.splice(cartaEliminada, 1);
+                        this.#juego.mesa.mano.pop();
+                    });
+                    
+                    console.log(this.#juego.mesa.mano);
+                    this.#juego.notificar();
+                }
+            }
+        }
+    }
+
 }
 class ReglaException extends Error {
     constructor(message) {
@@ -184,5 +215,6 @@ class ReglaException extends Error {
       this.name = "ReglaException";
     }
   }
+  
 export { Jugador }
 export {ReglaException}
