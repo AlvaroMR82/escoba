@@ -52,6 +52,11 @@ class CartaView {
         this.#selectorCss=this.#element.classList;
         
     }
+    escoba(){
+      
+        this.#element.classList.add("escoba");
+        
+    }
     getModel(){
         return this.#model;
     }

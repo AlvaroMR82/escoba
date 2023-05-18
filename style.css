@@ -52,7 +52,7 @@ html, body {
 }
 
 #baza1, #baza2 ,#mano0{
-
+  position: absolute;
   height: 175px;
   width: 125px;
   border: solid #777;
@@ -62,6 +62,19 @@ html, body {
   padding-left: 12px;
   padding-bottom: 20px;
 }
+
+
+.escoba {
+  
+  transform: rotate(90deg);
+
+  padding-left: 25px;
+  padding-top: 32px;
+}
+
+
+
+
 @media (max-width: 768px) {
   img {
   max-width: 100px;

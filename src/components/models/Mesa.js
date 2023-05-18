@@ -76,7 +76,7 @@ class Mesa {
             throw new Error('la baza no ha sumado 15, vuelve a intentarlo');
         }
 
-        if (cartasElegidas === this.#mano && suma == 15) {
+        if (cartasElegidas.length == this.#mano.length) {
             return true;
         } else {
             return false;

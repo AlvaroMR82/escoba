@@ -50,7 +50,7 @@ class JugadorController {
     }
 
     _registrarEventosMesa() {
-       
+
         // TODO: registrar eventos cartas mesa
         let cartasListener = [];
         cartasListener = this.#mesaController.getCartasViews();
@@ -82,18 +82,18 @@ class JugadorController {
         srcElement.view.toggleSelection();
 
         if (this.#manoJugadorCartasView.isCartaSelected()) {
-           this.#mesaController.resetSelection();
-           this.#manoJugadorCartasView.getModel().forEach(carta => {
-            carta.disableSelection();
-        });
-          srcElement.view.toggleSelection();
+            this.#mesaController.resetSelection();
+            this.#manoJugadorCartasView.getModel().forEach(carta => {
+                carta.disableSelection();
+            });
+            srcElement.view.toggleSelection();
         }
 
         this.cuentaJuego();
         if (this.#manoJugadorCartasView.isCartaSelected()) {
             this._registrarEventosMesa();
 
-        }else{
+        } else {
             this._desRegistrarEventosMesa();
         }
 
@@ -106,7 +106,7 @@ class JugadorController {
             this.#manoJugadorCartasView.toggleSelectionCarta(cartaView);
         }
         this.cuentaJuego();
-        
+
     }
 
 
@@ -136,6 +136,7 @@ class JugadorController {
 
         let bazas = this.#jugadorModel.misBazas;
         let cartas = [];
+        let escobas=0;
         bazas.forEach(baza => {
 
             let cartasBaza = baza.cartasBaza;
@@ -143,65 +144,76 @@ class JugadorController {
                 cartas.push(element);
             });
         });
-        if (this.#jugadorModel.misBazas) {
-           
-            let baza = "";
-            if(this.#manoJugadorCartasView.getPosicionJugador()==0){
-                baza="baza2"
-            } else if( this.#manoJugadorCartasView.getPosicionJugador()==1){
-                baza="baza1"
-            }
-            let bcv = new PilaCartasView(cartas, baza);
-            this.#bazasCartasView = bcv;
-        }
-    }
-
-    update(data) {
-        //TODO: Método que recibe notficaciones del modelo (patrón observer)
-        console.log(data.turno)
-        let visible=Boolean;
-        if(this.#manoJugadorCartasView.getPosicionJugador()==0){
+        bazas.forEach(baza => {
             
-            if(data.turno%2 == 0){
-                visible=false;
-            }else{
-                visible= true;
-            }
-        }
-        if(this.#manoJugadorCartasView.getPosicionJugador()==1){
-            if(data.turno%2 == 0){
-                visible= true;
-            }else{
-                visible=false;
+            console.log(baza.escoba+ " si hai escoba");
+            if (baza.escoba) {
+                escobas++;
             }
 
+        });
+  
+
+    if(this.#jugadorModel.misBazas) {
+
+        let baza = "";
+        if (this.#manoJugadorCartasView.getPosicionJugador() == 0) {
+            baza = "baza2"
+        } else if (this.#manoJugadorCartasView.getPosicionJugador() == 1) {
+            baza = "baza1"
+        }
+       
+        let bcv = new PilaCartasView(cartas, baza,escobas);
+        this.#bazasCartasView = bcv;
+    }
+}
+
+update(data) {
+    //TODO: Método que recibe notficaciones del modelo (patrón observer)
+    console.log(data.turno);
+    let visible = Boolean;
+    if (this.#manoJugadorCartasView.getPosicionJugador() == 0) {
+
+        if (data.turno % 2 == 0) {
+            visible = false;
+        } else {
+            visible = true;
+        }
+    }
+    if (this.#manoJugadorCartasView.getPosicionJugador() == 1) {
+        if (data.turno % 2 == 0) {
+            visible = true;
+        } else {
+            visible = false;
         }
 
-        let nuevoreparto = new ManoJugadorCartasView(data.jugadores[this.#manoJugadorCartasView.getPosicionJugador()], 
-        this.#manoJugadorCartasView.getPosicionJugador(),visible);
-        this.#manoJugadorCartasView = nuevoreparto;
-        this.#jugadorModel = data.jugadores[this.#manoJugadorCartasView.getPosicionJugador()];
-        this._redraw();
-        this.#mesaController.redraw();
-        if(visible){
+    }
+
+    let nuevoreparto = new ManoJugadorCartasView(data.jugadores[this.#manoJugadorCartasView.getPosicionJugador()],
+        this.#manoJugadorCartasView.getPosicionJugador(), visible);
+    this.#manoJugadorCartasView = nuevoreparto;
+    this.#jugadorModel = data.jugadores[this.#manoJugadorCartasView.getPosicionJugador()];
+    this._redraw();
+    this.#mesaController.redraw();
+    if (visible) {
         this._registrarEventosManoJugador();
-        }
-
     }
-    cuentaJuego() {
 
-        try {
-            let jugador = this.#jugadorModel;
-            let cartaMano = this.#manoJugadorCartasView.getModelSelection();
-            let cartasMesa = this.#mesaController.getCartasModelsSelected();
-            jugador.juega(cartaMano, ...cartasMesa);
+}
+cuentaJuego() {
 
-        } catch (error) {
-            console.warn(error);
-            this._registrarEventosManoJugador();
-        }
+    try {
+        let jugador = this.#jugadorModel;
+        let cartaMano = this.#manoJugadorCartasView.getModelSelection();
+        let cartasMesa = this.#mesaController.getCartasModelsSelected();
+        jugador.juega(cartaMano, ...cartasMesa);
 
+    } catch (error) {
+        console.warn(error);
+        this._registrarEventosManoJugador();
     }
+
+}
 
 
 }
