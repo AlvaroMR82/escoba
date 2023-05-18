@@ -128,6 +128,7 @@ export class ManoJugadorCartasView {
     getVisivilidadJugador() {
         return this.#manoVisible;
     }
+    //Al finalizar la partida se muestran los puntos debajo del nombre de cada jugador.
     marcaPuntos(puntosJ1,puntosJ2){
         let manoJugador = document.getElementById("mesa");
         manoJugador.innerHTML = "";

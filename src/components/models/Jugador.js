@@ -177,9 +177,10 @@ class Jugador {
 
     }
 
-    // privados
-
-    ultimaMano(){
+    
+//El jugador que se lleve la ultima mano recoje las cartas de la mesa.
+    
+      ultimaMano(){
         
         if(this.#juego.mazo.length == 0 ){
             if(this.#juego.jugadores[0].miMano.length == 0){
@@ -207,6 +208,11 @@ class Jugador {
             }
         }
     }
+    /** El jugador cuenta los puntos de sus bazas 
+     
+    * @returns {puntos} - la los puntos del jugador
+     
+     */
     contarMisPuntos(){
         // conteo de escobas
         let puntos = 0;

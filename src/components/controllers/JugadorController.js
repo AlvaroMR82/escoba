@@ -198,6 +198,7 @@ update(data) {
     if (visible) {
         this._registrarEventosManoJugador();
     }
+    //al terinar la partida se le mandan los puntos a cada jugador para colocarlos en la pantalla.
     if(data.juegoTerminado == true){
         this.#manoJugadorCartasView.marcaPuntos(data.puntosJ1,data.puntosJ2);
     }
