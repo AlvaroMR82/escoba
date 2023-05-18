@@ -26,20 +26,26 @@ class Juego {
     #mesa = null;
 
     #ultimoJugador;
+    #juegoTerminado = Boolean;
+    #puntosJ1;
+    #puntosJ2;
 
-    turno=0;
+    turno = 0;
 
     // Getters y Setters
     get mazo() { return this.#mazo }
     get jugadores() { return this.#jugadores }
     get mesa() { return this.#mesa }
-
+    get juegoTerminado() { return this.#juegoTerminado }
+    get puntosJ1() { return this.#puntosJ1 }
+    get puntosJ2() { return this.#puntosJ2 }
     /** Construye un nuevo juego con una nueva Baraja Española
      * @constructor
      */
     constructor(barajar) {
         this.init(barajar);
-        this.turno=0;
+        this.turno = 0;
+        this.#juegoTerminado = false;
     }
 
     // Interfaz
@@ -195,40 +201,48 @@ class Juego {
         this.#observers = this.#observers.filter(e => e != 0);
     }
 
-    notificar(){
-       this.#observers.forEach(observer => {
-        observer.update(this);
-       });
-       console.log(this.turno);
+    notificar() {
+        this.#observers.forEach(observer => {
+            observer.update(this);
+        });
+        console.log(this.turno);
     }
     repartirManos = () => {
         let mazo = this.#mazo;
-        
-       if(this.#mazo.length!=0){
-       
-        let mano1 = this.#jugadores[0].miMano;
-        let mano2 = this.#jugadores[1].miMano;
-       
 
-        for (let i = 0; i <= 2; i++) {
-            mano1.push(mazo.pop());
-            mano2.push(mazo.pop());
+        if (this.#mazo.length != 0) {
+
+            let mano1 = this.#jugadores[0].miMano;
+            let mano2 = this.#jugadores[1].miMano;
+
+
+            for (let i = 0; i <= 2; i++) {
+                mano1.push(mazo.pop());
+                mano2.push(mazo.pop());
+            }
         }
-    }
         return this;
     }
 
-ultimoJugador(jugador){
-    this.#ultimoJugador=jugador;
-    
-}
+    ultimoJugador(jugador) {
+        this.#ultimoJugador = jugador;
 
-ultimaJugada(){
-    if(this.#ultimoJugador!=null && this.#ultimoJugador!=undefined){
-        this.#ultimoJugador.ultimaMano();
+    }
+
+    ultimaJugada() {
+        if (this.#ultimoJugador != null && this.#ultimoJugador != undefined) {
+            this.#ultimoJugador.ultimaMano();
         }
-}
+    }
+    contartPuntos() {
 
+        this.#puntosJ1 = this.#jugadores[0].contarMisPuntos();
+        this.#puntosJ2 = this.#jugadores[1].contarMisPuntos();
+
+
+        this.#juegoTerminado = true;
+        this.notificar();
+    }
 
 }
 

@@ -198,7 +198,9 @@ update(data) {
     if (visible) {
         this._registrarEventosManoJugador();
     }
-
+    if(data.juegoTerminado == true){
+        this.#manoJugadorCartasView.marcaPuntos(data.puntosJ1,data.puntosJ2);
+    }
 }
 cuentaJuego() {
 
@@ -214,6 +216,7 @@ cuentaJuego() {
     }
 
 }
+
 
 
 }

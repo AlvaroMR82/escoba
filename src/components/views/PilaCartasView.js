@@ -25,7 +25,7 @@ class PilaCartasView {
           this.#cartasViews.forEach(carta => {
             carta.render(elemento);
         });
-        if(escobas>0){
+        if(escobas > 0){
             for (let f=0;   f < escobas; f++) {
             this.#cartasViews[f].escoba();
               

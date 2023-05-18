@@ -162,9 +162,9 @@ class Jugador {
                 this.#juego.repartirManos();
             }
             this.#juego.turno++;
-            this.#juego.notificar();
+            
             this.#juego.ultimaJugada();
-           
+            this.#juego.notificar();
          } else {
            
               throw new ReglaException(`No es posible arrojar la carta: ${cartaMano.clave}`);
@@ -180,14 +180,13 @@ class Jugador {
     // privados
 
     ultimaMano(){
-        console.log(this.#juego.mesa.mano);
-        console.log(this.#juego.mazo.length);
+        
         if(this.#juego.mazo.length == 0 ){
             if(this.#juego.jugadores[0].miMano.length == 0){
                 if(this.#juego.jugadores[1].miMano.length == 0){
                     let cartasBaza=[];
                     let escoba = Boolean;
-                    escoba= false;
+                    escoba = false;
                     
                     this.#juego.mesa.mano.forEach(carta => {
                         
@@ -198,15 +197,94 @@ class Jugador {
                         let cartaParaQitar = carta;
                         let cartaEliminada = this.#juego.mesa.mano.findIndex(carta => carta === cartaParaQitar);
                         this.#juego.mesa.mano.splice(cartaEliminada, 1);
-                        this.#juego.mesa.mano.pop();
+                        
                     });
                     
-                    console.log(this.#juego.mesa.mano);
+                    
                     this.#juego.notificar();
+                    this.#juego.contartPuntos();
                 }
             }
         }
     }
+    contarMisPuntos(){
+        // conteo de escobas
+        let puntos = 0;
+        let bazas = this.misBazas;
+        
+        bazas.forEach(baza => {
+            if(baza.escoba==true){
+                puntos++;
+            }
+        });
+        
+        //conteo de cartas
+        let cartas=0;
+        bazas.forEach(baza => {
+            let mano=[];
+            mano = baza.cartasBaza;
+            cartas = cartas + mano.length;
+        });
+        console.log("cartas " + cartas);
+        if (cartas > 20){
+
+            puntos++;
+        }
+
+        //conteo de 7
+        let sietes=0;
+        bazas.forEach(baza => {
+            let mano=[];
+            mano = baza.cartasBaza;
+            mano.forEach(carta => {
+                if (carta.valor == 7){
+
+                    sietes++;
+                }
+            });
+        });
+        console.log("sietes " + sietes);
+        if (sietes > 2){
+            puntos ++;
+        }
+
+       //conteo de oros
+
+        let oros=0;
+        bazas.forEach(baza => {
+            let mano=[];
+            mano = baza.cartasBaza;
+            mano.forEach(carta => {
+                if (carta.isOros()){
+
+                    oros++;
+                }
+            });
+        });
+        console.log("oros " + oros);
+        if (oros > 5){
+            puntos++;
+        }
+
+        //conteo de velo
+        let velo="";
+        bazas.forEach(baza => {
+            let mano=[];
+            mano = baza.cartasBaza;
+            mano.forEach(carta => {
+                if (carta.isOros()==true && carta.valor == 7){
+                 puntos++;
+                 console.log(" tienes el velo");   
+                } 
+            });
+        });
+        
+
+        console.log("puntos final " + puntos);
+        return puntos;
+        
+    }
+
 
 }
 class ReglaException extends Error {

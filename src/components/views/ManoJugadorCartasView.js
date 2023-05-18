@@ -128,6 +128,20 @@ export class ManoJugadorCartasView {
     getVisivilidadJugador() {
         return this.#manoVisible;
     }
+    marcaPuntos(puntosJ1,puntosJ2){
+        let manoJugador = document.getElementById("mesa");
+        manoJugador.innerHTML = "";
+        if (this.#posicionJugador == 0) {
+            let manoJugador = document.getElementById("mano2");
+            manoJugador.innerHTML = `puntos jugador1 =  ${puntosJ1}`;
+            
+        } else if (this.#posicionJugador == 1) {
+            let manoJugador = document.getElementById("mano1");
+            manoJugador.innerHTML = `puntos jugador1 =  ${puntosJ2}`;
+
+            
+        }
+    }
     
 
 }
