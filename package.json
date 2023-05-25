@@ -10,7 +10,7 @@
     "test:update": "bin/update-test.sh"
   },
   "config": {
-    "test_version": "v1.2.0"
+    "test_version": "v1.3.0"
   },
   "type": "module",
   "keywords": [

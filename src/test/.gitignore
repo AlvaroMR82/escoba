@@ -1,1 +1,2 @@
 *.test.js
+model/seeds_tests_cases/*
