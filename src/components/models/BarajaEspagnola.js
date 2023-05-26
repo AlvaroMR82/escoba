@@ -60,15 +60,31 @@ class BarajaEspagnola {
      */
     cartaByClave(clave){
         
-      console.log(clave.length)
-
-        if((typeof clave === 'string' || clave instanceof String) && clave.length == 2){
+       if((typeof clave === 'string' || clave instanceof String) && clave.length == 2){
             for  (let unaCarta of this.cartas){
                 if(unaCarta.clave === clave) return unaCarta;
             }
             throw new Error(`Clave de carta no está en la baraja: ${clave}`);
         }
         else throw new Error(`Clave de carta no válida: ${clave}. Debe ser un string de 2 caracteres`);
+    }
+
+    cartasByClaves(...claves){
+        
+         console.log(claves + "cartas");
+         let cartasClave = [];
+    claves.forEach(clave => {
+        
+        let carta = this.cartaByClave(clave);
+        cartasClave.push(carta)
+    }); 
+              
+           // console.log(carta + " cartas devuelta")
+      
+
+
+
+        return cartasClave;
     }
 }
 
