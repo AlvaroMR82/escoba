@@ -1,0 +1,18 @@
+[
+    {
+        "cartasBaza": [ "o1","o2","o3","o4","o5"],
+        "escoba": false
+    },
+    {
+        "cartasBaza": [ "c1","c2","c3","c4","c5"],
+        "escoba": false
+    },
+    {
+        "cartasBaza": [ "e1","e2","e3","e4","e5"],
+        "escoba": false
+    },
+    {
+        "cartasBaza": [ "b1","b2","b3","b4","b5"],
+        "escoba": false
+    }
+]

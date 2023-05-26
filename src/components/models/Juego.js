@@ -58,11 +58,11 @@ class Juego {
 
         let baraja = new BarajaEspagnola();
         this.#mazo = baraja.cartas;
-
+/*
         if (barajar) {
             this.#mazo = this.barajar();
         }
-
+*/
         // Estableciendo el valor que se pretende de cada carta
         this.estableceValorCartas();
 

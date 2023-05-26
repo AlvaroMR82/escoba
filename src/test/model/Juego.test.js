@@ -12,8 +12,9 @@ describe('SCJ - Construyendo el juego', () => {
         expect(juego.mazo).toHaveLength(40);
     });
 
-    test('SCJ02 - Compruebo que en el mazo están todas las cartas necesarias (baraja española)', () => {
-        const juego = new Juego();
+    test('SCJ02 - Construyo, inicio (barajando) y compruebo que en el mazo están todas las cartas necesarias', () => {
+        const juego = new Juego( { init:false } );
+        juego.init( { barajar:true } );
         expect(juego.mazo).toBeTruthy();
         const cartasEsperadas = new Set(['e1','e3','e2','e4','e5','e6','e7','eS','eC','eR','o1','o2','o3','o4','o5','o6','o7','oS','oC','oR','b1','b2','b3','b4','b5','b6','b7','bS','bC','bR','c1','c2','c3','c4','c5','c6','c7','cS','cC','cR']);
         const cartasGeneradas = new Set(juego.mazo.map( carta => carta.clave ));
@@ -174,7 +175,8 @@ describe('SJUG - Los jugadores juegan', () => {
         // FIXME: (Tarea profesor) No hacer referencias explícitas a estructuras en este test
         // TODO: (Tarea profesor) Refactorizar este test aplipando la técnica de mocking
         
-        const juego = new Juego();
+        const juego = new Juego( { init:false } );
+        
         juego.repartir();
         
         expect(juego.jugadores).toBeTruthy();
@@ -215,9 +217,10 @@ describe('SJUG - Los jugadores juegan', () => {
         expect(juego.mesa.mano[1].clave).toEqual(m4.clave);
 
         // Las cartas ganadas se encuentan en las bazas del jugador
+       
         expect(jugador.misBazas).toHaveLength(1);
         expect(jugador.misBazas[0]).toEqual({
-            cartasBaza: [m2,m3,j1],
+            cartasBaza: [j1,m2,m3],
             escoba: false,
         })
     });

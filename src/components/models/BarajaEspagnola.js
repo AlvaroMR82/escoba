@@ -37,7 +37,7 @@ class BarajaEspagnola {
      * @param {number} valorMax - Indica cual es el número de carta más alto (excluyendo las figuras)
      */
     constructor(valorMax=7) {
-        if(valorMax>9) throw new Error(`'No se puede contruir la baraja con cartas de valor ${valorMax}`);
+        if(valorMax>9) throw new Error(`No se puede contruir la baraja con cartas de valor ${valorMax}`);
 
         const newBaraja = []
         // Por cada palo
@@ -59,13 +59,16 @@ class BarajaEspagnola {
      * @returns {Carta} La carta
      */
     cartaByClave(clave){
-        if(typeof clave === 'string' || clave instanceof String){
+        
+      console.log(clave.length)
+
+        if((typeof clave === 'string' || clave instanceof String) && clave.length == 2){
             for  (let unaCarta of this.cartas){
                 if(unaCarta.clave === clave) return unaCarta;
             }
-            throw new Error(`Clave de carta no válida o no está en la baraja: ${clave}`);
+            throw new Error(`Clave de carta no está en la baraja: ${clave}`);
         }
-        else throw new Error(`Clave de carta no válida: ${clave}. Debe ser un string`);
+        else throw new Error(`Clave de carta no válida: ${clave}. Debe ser un string de 2 caracteres`);
     }
 }
 

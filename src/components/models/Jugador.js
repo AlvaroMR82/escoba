@@ -104,10 +104,11 @@ class Jugador {
             escoba = mesa1.recogeBazaGanada(cartaMano, cartasMesa);
 
             //juntamos las cartas en un array que empieza con las cartas de la mesa y despues con la carta de la mano.    
+            cartasBaza.push(cartaMano);
             cartasMesa.forEach(carta => {
                 cartasBaza.push(carta);
             });
-            cartasBaza.push(cartaMano);
+            
             //lo mandamos a las bazas
             this.#bazas.push({ cartasBaza, escoba });
 
@@ -133,7 +134,7 @@ class Jugador {
         }
 
        
-        return { cartasBaza, escoba };
+        ///return { cartasBaza, escoba };
         
 
         //this.#juego.mesa.mano.splice(1,2);
