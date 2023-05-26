@@ -216,12 +216,12 @@ class Jugador {
      */
     contarMisPuntos(){
         // conteo de escobas
-        let puntos = 0;
+        let puntosTotales = 0;
         let bazas = this.misBazas;
         let escobas = 0;
         bazas.forEach(baza => {
             if(baza.escoba==true){
-                puntos++;
+                puntosTotales++;
                 escobas++;
             }
         });
@@ -237,7 +237,7 @@ class Jugador {
         console.log("cartas " + cartas);
         if (cartas > 20){
 
-            puntos++;
+            puntosTotales++;
         }
 
         //conteo de 7
@@ -254,7 +254,7 @@ class Jugador {
         });
         console.log("sietes " + sietes);
         if (sietes > 2){
-            puntos ++;
+            puntosTotales ++;
         }
 
        //conteo de oros
@@ -272,25 +272,34 @@ class Jugador {
         });
         console.log("oros " + oros);
         if (oros > 5){
-            puntos++;
+            puntosTotales++;
         }
 
         //conteo de velo
-        let velo="";
+        let velo=0;
         bazas.forEach(baza => {
             let mano=[];
             mano = baza.cartasBaza;
             mano.forEach(carta => {
+               
                 if (carta.isOros()==true && carta.valor == 7){
-                 puntos++;
+                 puntosTotales++;
+                 velo =1;
                  console.log(" tienes el velo");   
                 } 
             });
         });
         
 
-        console.log("puntos final " + puntos);
-        return puntos;
+        console.log("puntos final " + puntosTotales);
+        return ({
+            puntosTotales : puntosTotales,
+            cartas: cartas,
+            sietes: sietes,
+            velo: velo,
+            oros: oros,
+            escobas: escobas,
+        });
         
     }
 

@@ -83,6 +83,7 @@ describe('BERC - Baraja españoña - Recuperar Cartas', () => {
     test('BERC08 - Obtener array de cartas con claves duplicadas (sin que interfiera en resultado)', () => {
         const claves = ['o1','o1'];
         const conjunto = new Set(claves);
+        console.log(conjunto.size + "conjunto.size")
         const resultado = new BarajaEspagnola().cartasByClaves(...claves)
         expect(resultado).toHaveLength(conjunto.size);
     });

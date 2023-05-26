@@ -4,3 +4,5 @@ class ReglaException extends Error {
       this.name = "ReglaException";
     }
   }
+
+  export { ReglaException }
