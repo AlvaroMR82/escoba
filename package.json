@@ -13,7 +13,7 @@
     "preview": "vite preview"
   },
   "config": {
-    "test_version": "v1.2.0"
+    "test_version": "v1.3.0"
   },
   "type": "module",
   "keywords": [
